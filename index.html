@@ -2,54 +2,94 @@
 <html lang="en">
 
 <head>
-    <title>My BCIT Project</title>
-    <meta name="comp1800 template" content="My 1800 App">
+  <title>My BCIT Project</title>
+  <meta name="comp1800 template" content="My 1800 App">
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap Library CSS CDN go here -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <!-- Boostrap Library JS CDN  go here -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <!-- Bootstrap Library CSS CDN go here -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <!-- Boostrap Library JS CDN  go here -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+  </script>
 
-    <!-- Other libraries go here -->
+  <!-- Other libraries go here -->
 
-    <!-- Link to styles of your own -->
-    <!-- <link rel="stylesheet" href="./styles/style.css"> -->
+  <!-- Link to styles of your own -->
+  <style>
+    #navbar {
+      padding: 40px;
+      width: 100%;
+      background-color: rgb(248, 109, 109);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+    }
+
+    #img{
+      width: 100%;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 120px;
+      background-color: rgb(248, 109, 109);
+      font-weight: bold;
+      align-items: center;
+      display: flex;
+    }
+  </style>
+  <!-- <link rel="stylesheet" href="./styles/style.css"> -->
 
 </head>
 
 <body>
 
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
-    <!------------------------------>
+  <!------------------------------>
+  <!-- Your HTML Layout go here -->
+  <!------------------------------>
 
-    <div class="px-4 pt-5 my-5 text-center border-bottom">
-        <h1 class="display-4 fw-bold">FARMERGENCY</h1>
-        <div class="overflow-hidden" style="max-height: 100vh;">
-            <div class="container px-5">
-              <img src="images/cartoon-farmer-and-farm-animals-in-the-barnyard-free-vector.png" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
-            </div>
-          </div>
-          <br>
-        <div class="col-lg-6 mx-auto">
-          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-            <button type="button" class="btn btn-primary btn-lg px-5 me-sm-3">LOGIN</button>
-            <button type="button" class="btn btn-outline-secondary btn-lg px-5">SIGN-UP</button>
-          </div>
-        </div>
+  <nav class="mt-auto text-center">
+    <span id="navbar" class="navbar-brand fw-bolder text-light">FARMergency Livestock Relocation App</span>
+  </nav>
+
+  <div class="px-4 pt-5 my-5 text-center border-bottom">
+    <h1 class="display-4 fw-bold">FARMERGENCY</h1>
+    <div class="overflow-hidden" style="max-height: 100vh;">
+      <div class="container px-5">
+        <img src="images/cartoon-farmer-and-farm-animals-in-the-barnyard-free-vector.png"
+          class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
       </div>
+    </div>
+    <br>
+    <div class="col-lg-6 mx-auto">
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+        <button type="button" class="btn btn-primary btn-lg px-5 me-sm-3">LOGIN</button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-5">SIGN-UP</button>
+      </div>
+    </div>
+  </div>
 
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
+  <!---------------------------------------------->
+  <!-- Your own JavaScript functions go here    -->
+  <!---------------------------------------------->
 
-    <!-- Link to scripts of your own -->
-    <!-- <script src="./scripts/script.js"></script> -->
+  <!-- Link to scripts of your own -->
+  <!-- <script src="./scripts/script.js"></script> -->
 
 </body>
+
+<footer class="footer mt-auto py-3 text-center">
+  <div class="container">
+    <span class="text-light">App by: Alex, Markus, Seung-yeop</span>
+  </div>
+</footer>
 
 </html>
