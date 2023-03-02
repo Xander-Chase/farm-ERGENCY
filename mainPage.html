@@ -32,16 +32,7 @@
       background-size: cover;
     }
 
-    .footer-buttons {
-      display: grid;
-      justify-items: center;
-      padding-top: .5%;
-      padding-left: .5%;
-      padding-right: .5%;
-      grid-template-columns: 1fr 2fr 1fr;
-      /* grid-template-areas:
-            "bell home list"; */
-    }
+
   </style>
 
 
@@ -60,7 +51,14 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </span>
-
+    <button onclick="myFunction()" class="position-absolute top-0 start-0">
+      <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" fill="currentColor"
+      class="bi bi-arrow-left " viewbox="0 0 16 16">
+      <path fill-rule="evenodd"
+        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+    </svg>
+    </button>
+    
   </nav>
 
   <footer id="footerlogin"></footer>
