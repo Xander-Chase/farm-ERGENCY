@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "bootstrap-icons": "^1.10.3",
     "mapbox-gl": "^2.13.0"
   }
 }
