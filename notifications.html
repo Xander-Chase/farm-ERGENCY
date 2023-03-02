@@ -22,22 +22,14 @@
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="navBarFooter.css">
     <style>
-        .feature_container {
-        display: grid;
-        height: 100vh;
-        font-family: 'MainFont';
-        justify-items: center;
-        padding-top: .5%;
-        padding-left: .5%;
-        padding-right: .5%;
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas:
-            "feature_Logo1 feature_Logo2"
-            "feature_Logo3 feature_Logo4"
-            "feature_Logo5 feature_Logo6"
-            "feature_Logo7 feature_Logo8"
-    }
-    </style>
+        body {
+          background-image: url(images/Notifications/Notifications.png);
+          background-repeat: repeat;
+          background-size: 50%;
+        }
+    
+    
+      </style>
 
 </head>
 
@@ -48,9 +40,9 @@
     <!------------------------------>
 
     <nav class="mt-auto text-center">
-        <span id="featureNavbar" class="navbar-brand fw-bolder text-dark">FEATURE MENU</span>
+        <span id="featureNavbar" class="navbar-brand fw-bolder text-dark">NOTIFICATIONS</span>
         <button onclick="myFunction()" class="position-absolute top-0 start-0">
-            <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" fill="currentColor"
+            <svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" fill="currentColor"
             class="bi bi-arrow-left " viewbox="0 0 16 16">
             <path fill-rule="evenodd"
               d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
@@ -58,32 +50,7 @@
           </button>
     </nav>
 
-    <div class="feature_container">
-
-        <div id="feature_Logo1"><button onclick="myFunction()"><img src="images\featureMenu\Logo1_FARM-ergency.png"
-                    alt="feature_Logo1"></button></div>
-
-        <div id="feature_Logo2"><button onclick="myFunction()"><img src="images\featureMenu\Logo2_My_Property.png"
-                    alt="feature_Logo2"></button></div>
-
-        <div id="feature_Logo3"><button onclick="myFunction()"><img src="images\featureMenu\Logo3_Relocation_Search.png"
-                    alt="feature_Logo3"></button></div>
-
-        <div id="feature_Logo4"><button onclick="myFunction()"><img
-                    src="images\featureMenu\Logo4_Transportation_Search.png" alt="feature_Logo4"></button></div>
-
-        <div id="feature_Logo5"><button onclick="myFunction()"><img src="images\featureMenu\Logo5_Personal_Details.png"
-                    alt="feature_Logo5"></button></div>
-
-        <div id="feature_Logo6"><button onclick="myFunction()"><img src="images\featureMenu\Logo6_Chat.png"
-                    alt="feature_Logo6"></button></div>
-
-        <div id="feature_Logo7"><button onclick="myFunction()"><img src="images\featureMenu\Logo7_Notifications.png"
-                    alt="feature_Logo7"></button></div>
-
-        <div id="feature_Logo8"></div>
-
-    </div>
+   
 
 
     <!---------------------------------------------->
