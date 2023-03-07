@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-  <title>My BCIT Project</title>
-  <meta name="Feature Menu" content="FARMergency Feature Listing">
+  <title>FARMergency Main Page</title>
+  <meta name="Main page" content="FARMergency Main Screen">
 
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -22,56 +22,65 @@
 
   <!-- Other libraries go here -->
 
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+
   <!-- Link to styles of your own -->
   <link rel="stylesheet" href="navBarFooter.css">
   <link href="'https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' /">
+
+  <!-- Link to Mapbox CSS and Javascript files -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet" />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
+
+
   <style>
-    body {
-      background-image: url("images/Main/map_Placeholder.png");
-      background-repeat: repeat;
-      background-size: cover;
+    #map {
+      position: absolute;
+      top: 120px;
+      bottom: 120px;
+      width: 100%;
     }
 
-    .footer-buttons {
-      display: grid;
-      justify-items: center;
-      padding-top: .5%;
-      padding-left: .5%;
-      padding-right: .5%;
-      grid-template-columns: 1fr 2fr 1fr;
-      /* grid-template-areas:
-            "bell home list"; */
+
+    .featureNavbar {
+      display: flex;
+      align-items: center;
+    }
+
+    #searchBar {
+      margin-right: 10px;
     }
   </style>
-
-
 </head>
 
 <body>
-
-  <!------------------------------>
-  <!-- Your HTML Layout go here -->
-  <!------------------------------>
-
-  <nav id="navbar" class="mt-auto text-center">
+  <nav>
     <span id="featureNavbar" class="navbar-brand fw-bolder text-dark">
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <form class="form-inline my-2 my-lg-0 featureNavbar">
+        <input id="searchBar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button id="searchButton" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </span>
-    <button onclick="myFunction()">
-      <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" fill="currentColor"
-      class="bi bi-arrow-left position-absolute top-0 start-0" viewbox="0 0 16 16">
-      <path fill-rule="evenodd"
-        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-    </svg>
+    <button onclick="goBack()" class="position-absolute top-0 start-0">
+      <svg xmlns="http://www.w3.org/2000/svg" width="115" height="115" fill="currentColor" class="bi bi-arrow-left "
+        viewbox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+      </svg>
     </button>
-    
   </nav>
 
-  <footer id="footerlogin"></footer>
+  <div id="map"></div>
 
+
+
+
+  <footer id="footerlogin"></footer>
 
 
   <!---------------------------------------------->
@@ -80,11 +89,29 @@
 
   <!-- Link to scripts of your own -->
   <!-- <script src="./scripts/script.js"></script> -->
-  <script src="./scripts/skeleton_navbar.js"></script>
+
+  <script src="./scripts/firebaseAPI_BBY30.js"></script>
+  <script src="./scripts/authentication.js"></script>
+  <script src="./scripts/script.js"></script>
+  <script src="./scripts/skeleton.js"></script>
   <script src="./scripts/skeleton2.js"></script>
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYWpnYWJsIiwiYSI6ImNsZXFyN2pmaDBsbmQzcmxrdDN1bWR2dWQifQ.X2m-VshHfJA_ZpBixUPCaw';
+  
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11', // replace with your preferred map style
+      center: [-74.5, 40], // replace with the center coordinates of your map
+      zoom: 9 // replace with the initial zoom level of your map
+    });
+  </script>
+  
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+  </script>
 
 </body>
-
-
 
 </html>
