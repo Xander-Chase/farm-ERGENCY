@@ -20,3 +20,31 @@ function getNameFromAuth() {
     });
 }
 getNameFromAuth(); //run the function
+
+auth.signInWithEmailAndPassword(email, password)
+  .then(function() {
+    // User signed in successfully
+  })
+  .catch(function(error) {
+    // Handle errors here
+  });
+
+  const contactForm = document.getElementById('contact-form');
+
+contactForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+  
+  const formData = new FormData(contactForm);
+  
+  const fullName = formData.get('full-name');
+  const email = formData.get('email');
+  const phone = formData.get('phone');
+  const mobile = formData.get('mobile');
+  const address = formData.get('address');
+  
+  console.log('Full Name:', fullName);
+  console.log('Email:', email);
+  console.log('Phone:', phone);
+  console.log('Mobile:', mobile);
+  console.log('Address:', address);
+});
