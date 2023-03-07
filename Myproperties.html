@@ -18,6 +18,13 @@
     </script>
 
   <!-- Other libraries go here -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
   <!-- Link to styles of your own -->
   <link rel="stylesheet" href="myprop.css">
@@ -31,7 +38,7 @@
   <!-- Your HTML Layout go here -->
   <!------------------------------>
 
-  <nav id="navbar" class="mt-auto text-center">
+  <nav id="navbar" class="mt-auto text-center"> </nav>
     <span id="featureNavbar" class="navbar-brand fw-bolder text-dark">My properties</span>
     <button onclick="myFunction()" class="position-absolute top-0 start-0">
       <svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" fill="currentColor" class="bi bi-arrow-left "
@@ -40,7 +47,7 @@
           d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
       </svg>
     </button>
-  </nav>
+ 
 
   <!-- <label for="exampleDataList" class="form-label">Add livestock</label>
     <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
@@ -80,11 +87,11 @@
           <input class="form-control" list="datalistOptions" id="Livestocks" placeholder="Type your livestocks">
         </div>
         <datalist id="datalistOptions">
-          <option value="Cow">
-          <option value="Pig">
-          <option value="Chicken">
-          <option value="Horse">
-          <option value="Sheep">
+          <option value="Cow"></option>
+          <option value="Pig"></option>
+          <option value="Chicken"></option>
+          <option value="Horse"></option>
+          <option value="Sheep"></option>
         </datalist>
 
         <div class="mb-3">
@@ -104,6 +111,7 @@
   <!-- <script src="./scripts/script.js"></script> -->
   <script src="./scripts/skeleton_navbar.js"></script>
   <script type="text/javascript" src="myprop.js"></script>
+  
 </body>
 
 <footer class="footer mt-auto py-3 text-center">
