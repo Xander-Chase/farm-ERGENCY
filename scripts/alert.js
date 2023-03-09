@@ -23,6 +23,16 @@ function getNameFromAuth() {
 }
 getNameFromAuth(); //run the function
 
+auth.signInWithEmailAndPassword(email, password)
+  .then(function() {
+    // User signed in successfully
+  })
+  .catch(function(error) {
+    // Handle errors here
+  });
+
+  const contactForm = document.getElementById('contact-form');
+
 function saveAlert() {
     let evacuation = document.getElementById("immediateEvacuation").value;
     let transport = document.getElementById("immediateTransport").value;
@@ -31,7 +41,7 @@ function saveAlert() {
   
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            var currentUser = db.collection("alertForm").doc(user.uid)
+            var currentUser = db.collection("users").doc(user.uid)
             var userID = user.uid;
             //get the document for current user.
             currentUser.get()
