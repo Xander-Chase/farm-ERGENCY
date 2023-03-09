@@ -46,10 +46,8 @@ function saveAlert() {
             //get the document for current user.
             currentUser.get()
                 .then(userDoc => {
-                    var userEmail = userDoc.data().email;
                     db.collection("alertForm").add({
                         userID: userID,
-                        email: userEmail,
                         evacuation: evacuation,
                         transport: transport,
                         property: property,

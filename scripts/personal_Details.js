@@ -97,7 +97,6 @@ function saveUserInfo() {
           //get the document for current user.
           currentUser.get()
               .then(userDoc => {
-                  var userEmail = userDoc.data().email;
                   db.collection("userinfo").add({
                       userID: userID,
                       Name: fullName,
