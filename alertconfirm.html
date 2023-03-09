@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My BCIT Project</title>
+    <meta name="Feature Menu" content="FARMergency Feature Listing">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap Library CSS CDN go here -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Boostrap Library JS CDN  go here -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        </script>
+
+    <!-- Other libraries go here -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+  <script src="scripts/firebaseAPI_BBY30.js"></script>
+
+    <!-- Link to styles of your own -->
+    <link rel="stylesheet" href="navBarFooter.css">
+    <style>
+        body {
+            background-image: url();
+            background-repeat: repeat;
+            background-size: 50%;
+        }
+    </style>
+    
+
+</head>
+
+<body>
+
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
+
+    <nav id="navbar" class="mt-auto text-center">
+        <span id="featureNavbar" class="navbar-brand fw-bolder text-dark">Alert</span>
+        <button onclick="myFunction()" class="position-absolute top-0 start-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" fill="currentColor"
+                class="bi bi-arrow-left " viewbox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+            </svg>
+        </button>
+    </nav>
+
+    <div class="modal modal-sheet position-static d-block py-5" tabindex="-1" role="dialog" id="modalSheet">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content rounded-4 shadow">
+            <div class="modal-header border-bottom-0">
+              <h1 class="modal-title fs-5">Confirmed!</h1>
+              <button type="button" class="btn-close" aria-label="Close"></button>
+            </div>
+            <div class="modal-body py-0">
+              <p>Your FARMergency Alert 
+                Request has been submitted.
+                
+                Other users have been notified 
+                of your situation.
+                
+                To increase the speed and 
+                response of an assisted livestock
+                relocation effort, please view the 
+                Relocation Search below to find
+                users near you.</p>
+            </div>
+            <div class="modal-footer flex-column border-top-0">
+              <a id="confirm" class="btn btn-lg btn-light w-100 mx-0 border" type="submit" href="mainPage.html">Relocation Search</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+
+    <!-- Link to scripts of your own -->
+    <!-- <script src="./scripts/script.js"></script> -->
+    <script src="./scripts/skeleton_navbar.js"></script>
+    <script src="./scripts/firebaseAPI_BBY30.js"></script>
+    <script src="./scripts/personal_Details.js"></script>
+
+</body>
+
+<footer class="footer mt-auto py-3 text-xcenter">
+    <div class="container">
+        <span class="text-light">App by: Alex Gabl, Markus Lum-De Guzman, Seung-yeop Hyun</span>
+    </div>
+</footer>
+
+</html>
