@@ -1,3 +1,29 @@
+function writelivestocks() {
+    //define a variable for the collection you want to create in Firestore to populate data
+    var routesRef = db.collection("livestock_Personal");
+
+    routesRef.add({
+    name: "",
+    count: "",
+        last_updated: firebase.firestore.FieldValue.serverTimestamp()  //current system time
+    });}
+
+    function writeRoutes() 
+        //define a variable for the collection you want to create in Firestore to populate data
+        var routesRef = db.collection("my_Livestock");
+    
+        routesRef.add({
+            cow: "5",
+        });
+        routesRef.add({
+            horse: "3",
+        });
+        routesRef.add({
+            pig: "10",
+        });
+
+
+
 var button = document.getElementById("enter");
 var inputData = document.getElementById("input");
 var ul = document.querySelector("ul");
@@ -54,3 +80,5 @@ function addListAfterKeypress(event) {
 
 button.addEventListener("click", addListAfterClick);
 inputData.addEventListener("keypress", addListAfterKeypress);
+
+
