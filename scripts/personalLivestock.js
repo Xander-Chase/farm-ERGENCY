@@ -34,7 +34,7 @@ function addLivestock() {
 
     // Write the data to Firestore
     var db = firebase.firestore();
-    var livestockCollection = db.collection("livestock");
+    var livestockCollection = db.collection("livestock_Personal");
     livestockCollection.where("type", "==", livestockType).get()
     .then(function(querySnapshot) {
         if (querySnapshot.empty) {
@@ -59,51 +59,51 @@ addLivestock();
 
 function populateLivestockTable() {
 
-// Get the Firestore database instance
-var db = firebase.firestore();
+    // Get the Firestore database instance
+    var db = firebase.firestore();
 
-// Get a reference to the livestock collection
-var livestockRef = db.collection("livestock");
+    // Get a reference to the livestock collection
+    var livestockRef = db.collection("livestock_Personal");
 
-// Query the livestock collection and get the documents
-livestockRef.get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-        // Get the livestock type and quantity from the document data
-        var livestockType = doc.data().type;
-        var livestockQuantity = doc.data().quantity;
+    // Query the livestock collection and get the documents
+    livestockRef.get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            // Get the livestock type and quantity from the document data
+            var livestockType = doc.data().type;
+            var livestockQuantity = doc.data().quantity;
 
-        // Add the livestock to the table
-        var livestockTable = document.getElementById("livestock-table");
-        var newRow = livestockTable.insertRow();
-        var typeCell = newRow.insertCell(0);
-        var quantityCell = newRow.insertCell(1);
-        var deleteCell = newRow.insertCell(2);
-        typeCell.innerHTML = livestockType;
-        quantityCell.innerHTML = livestockQuantity;
-        deleteCell.innerHTML = "<button>X</button>";
+            // Add the livestock to the table
+            var livestockTable = document.getElementById("livestock-table");
+            var newRow = livestockTable.insertRow();
+            var typeCell = newRow.insertCell(0);
+            var quantityCell = newRow.insertCell(1);
+            var deleteCell = newRow.insertCell(2);
+            typeCell.innerHTML = livestockType;
+            quantityCell.innerHTML = livestockQuantity;
+            deleteCell.innerHTML = "<button>X</button>";
 
-        // Add event listener to delete button
-        var deleteButton = deleteCell.getElementsByTagName("button")[0];
-        deleteButton.addEventListener("click", function() {
-            // Delete the corresponding document from the collection
-            livestockRef.where("type", "==", livestockType).get()
-            .then(function(querySnapshot) {
-                querySnapshot.forEach(function(doc) {
-                    doc.ref.delete().then(function() {
-                        console.log("Document successfully deleted!");
-                    }).catch(function(error) {
-                        console.error("Error removing document: ", error);
+            // Add event listener to delete button
+            var deleteButton = deleteCell.getElementsByTagName("button")[0];
+            deleteButton.addEventListener("click", function() {
+                // Delete the corresponding document from the collection
+                livestockRef.where("type", "==", livestockType).get()
+                .then(function(querySnapshot) {
+                    querySnapshot.forEach(function(doc) {
+                        doc.ref.delete().then(function() {
+                            console.log("Document successfully deleted!");
+                        }).catch(function(error) {
+                            console.error("Error removing document: ", error);
+                        });
                     });
+                })
+                .catch(function(error) {
+                    console.error("Error getting documents: ", error);
                 });
-            })
-            .catch(function(error) {
-                console.error("Error getting documents: ", error);
+                // Remove the row from the table
+                livestockTable.deleteRow(newRow.rowIndex);
             });
-            // Remove the row from the table
-            livestockTable.deleteRow(newRow.rowIndex);
         });
     });
-});
 
 
 }

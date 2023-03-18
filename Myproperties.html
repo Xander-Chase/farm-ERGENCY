@@ -45,7 +45,6 @@
 	<form>
 		<label for="livestock-type">Select a livestock type:</label>
 		<select id="livestock-type">
-			<option value="None (default)">None</option>
 			<option value="cattle">Cattle</option>
 			<option value="pigs">Pigs</option>
 			<option value="sheep">Sheep</option>
@@ -94,6 +93,7 @@
 			<tr>
 				<th>Livestock Type</th>
 				<th>Maximum Capacity</th>
+				<th>Remove</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -108,6 +108,17 @@
 		<button type="submit">Submit</button>
 	</form>
 
+	<table id="transportation-table">
+		<thead>
+			<tr>
+				<th>Transportation Type</th>
+				<th>Remove</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+
 
 
 
@@ -121,6 +132,7 @@
 	<script src="./scripts/firebaseAPI_BBY30.js"></script>
 	<script src="./scripts/skeleton_navbar.js"></script>
 	<script src="scripts/personalLivestock.js"></script>
+	<script src="scripts/personalCapacity.js"></script>
 
 
 </body>
