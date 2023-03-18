@@ -39,70 +39,87 @@
   <!------------------------------>
 
   <nav id="navbar" class="mt-auto text-center"> </nav>
+
+  <h1>Personal Livestock Form</h1>
+
+	<form>
+		<label for="livestock-type">Select a livestock type:</label>
+		<select id="livestock-type">
+			<option value="cattle">Cattle</option>
+			<option value="pigs">Pigs</option>
+			<option value="sheep">Sheep</option>
+			<option value="horses">Horses</option>
+			<option value="game-animals">Game animals</option>
+			<option value="other-livestock">Other livestock</option>
+			<option value="poultry-birds">Poultry/Birds</option>
+		</select>
+    <label for="capacity-number">Enter Current Quantity:</label>
+		<input type="number" id="livestock-number" name="livestock-number">
+		<button type="button" onclick="addLivestock()">Add Livestock</button>
+	</form>
+
+	<table id="livestock-table">
+		<thead>
+			<tr>
+				<th>Livestock Type</th>
+				<th>Number</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+
+	<h1>Emergency Livestock Capacity Form</h1>
+
+	<form>
+		<label for="capacity-type">Select a livestock type:</label>
+		<select id="capacity-type">
+			<option value="cattle">Cattle</option>
+			<option value="pigs">Pigs</option>
+			<option value="sheep">Sheep</option>
+			<option value="horses">Horses</option>
+			<option value="game-animals">Game animals</option>
+			<option value="other-livestock">Other livestock</option>
+			<option value="poultry-birds">Poultry/Birds</option>
+		</select>
+		<label for="capacity-number">Enter the maximum capacity:</label>
+		<input type="number" id="capacity-number" name="capacity-number">
+		<button type="button" onclick="addCapacity()">Add Capacity</button>
+	</form>
+
+	<table id="capacity-table">
+		<thead>
+			<tr>
+				<th>Livestock Type</th>
+				<th>Maximum Capacity</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+
+	<h1>Personal Transportation Form</h1>
+
+	<form>
+		<label for="transport-type">Enter the type of vehicle or trailer you have:</label>
+		<input type="text" id="transport-type" name="transport-type">
+		<button type="submit">Submit</button>
+	</form>
  
 
-  <!-- <label for="exampleDataList" class="form-label">Add livestock</label>
-    <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
-    <datalist id="datalistOptions">
-      <option value="Cow">
-      <option value="Pig">
-      <option value="Chicken">
-      <option value="Horse">
-      <option value="Sheep">
-    </datalist> -->
-  <br>
-  <div class="container">
+  
 
-    <div class="livestock">
-      <h1>Personal livestock</h1>
-      <!-- <p>Livestocks</p> -->
-      <input id="input" type="text" placeholder="Type your livestock."
-      >
-      <button id="enter" style="color:rgb(255, 255, 255); background-color: rgb(248, 109, 109);">Add</button>
-      <ul>
-        <li class="li">Cow 5 <button class="delete">delete</button></li>
-        <li class="li">Horse 3 <button class="delete">delete</button></li>
-        <li class="li">Pig 10 <button class="delete">delete</button></li>
-      </ul>
-    </div>
-
-    <div class="dropdown1">
-      not working yet<br>
-      <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
-        data-bs-auto-close="outside" style="background-color: rgb(248, 109, 109);">
-        Add Livestock
-      </button>
-      <form class="dropdown-menu p-4">
-        <div class="mb-3">
-          <label for="Livestocks" class="form-label">Add livestocks</label>
-          <input class="form-control" list="datalistOptions" id="Livestocks" placeholder="Type your livestocks">
-        </div>
-        <datalist id="datalistOptions">
-          <option value="Cow"></option>
-          <option value="Horse"></option>
-          <option value="Chicken"></option>
-          <option value="Horse"></option>
-          <option value="Sheep"></option>
-        </datalist>
-
-        <div class="mb-3">
-          <label for="livestocksnumber" class="form-label">How many?</label>
-          <input class="form-control" id="livestocksnumber" type="number" placeholder="number">
-        </div>
-        <button type="submit" class="btn btn-primary" style="background-color: rgb(248, 109, 109);">Add</button>
-      </form>
-    </div>
-
-  </div>
+  <!-- </div> -->
   <!---------------------------------------------->
   <!-- Your own JavaScript functions go here    -->
   <!---------------------------------------------->
 
   <!-- Link to scripts of your own -->
   <!-- <script src="./scripts/script.js"></script> -->
-  <script src="./scripts/skeleton_navbar.js"></script>
-  <script type="text/javascript" src="myprop.js"></script>
   <script src="./scripts/firebaseAPI_BBY30.js"></script>
+  <script src="./scripts/skeleton_navbar.js"></script>
+  <script src="scripts/myprop.js"></script>
+  
   
 </body>
 
