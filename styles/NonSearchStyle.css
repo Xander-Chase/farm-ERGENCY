@@ -1,0 +1,16 @@
+
+/* Set height for header */
+nav {
+    height: 100px; 
+}
+
+/* Set height for footer */
+.footer {
+    height: 100px; 
+}
+
+/* Set height for main to fill the remaining space */
+main {
+    height: calc(100vh - (70px + 50px)); /* Subtract header and footer height from viewport height */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+}

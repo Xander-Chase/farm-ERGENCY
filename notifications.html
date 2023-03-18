@@ -35,16 +35,7 @@
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="navBarFooter.css">
-    <style>
-        body {
-          background-image: url(images/Notifications/Notifications.png);
-          background-repeat: repeat;
-          background-size: 50%;
-          
-        }
     
-    
-      </style>
 
 </head>
 
@@ -56,7 +47,20 @@
 
     <nav id="navbar" class="mt-auto text-center"></nav>
 
-   
+    <h1>Form Submissions</h1>
+    <table id="submissions">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Immediate Evacuation Required?</th>
+          <th>Livestock Transport Assistance Required?</th>
+          <th>Affected Livestock</th>
+          <th>Timestamp</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
 
 
     <!---------------------------------------------->
@@ -64,8 +68,9 @@
     <!---------------------------------------------->
 
     <!-- Link to scripts of your own -->
+    <script src="./scripts/firebaseAPI_BBY30.js"></script>
+    <script src="./scripts/notifications.js"></script>
     <script src="./scripts/skeleton_navbar.js"></script>
-    <!-- <script src="./scripts/script.js"></script> -->
 
 </body>
 
