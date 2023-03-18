@@ -10,11 +10,7 @@ function getNameFromAuth() {
             const userName = user.displayName;
 
             //method #1:  insert with JS
-            document.getElementById("name-goes-here").innerText = userName;    
-            //method #2:  insert using jquery
-            // $("#name-goes-here").text(user_Name); //using jquery
-            //method #3:  insert using querySelector
-            //document.querySelector("#name-goes-here").innerText = userName
+            document.getElementById("name-goes-here").innerText = userName;   
 
         } else {
             // No user is signed in.
@@ -23,59 +19,37 @@ function getNameFromAuth() {
 }
 getNameFromAuth(); //run the function
 
-auth.signInWithEmailAndPassword(email, password)
-  .then(function() {
-    // User signed in successfully
-  })
-  .catch(function(error) {
-    // Handle errors here
-  });
 
-  const contactForm = document.getElementById('contact-form');
-
-  function populateUserInfo() {
+function populateUserInfo() {
     firebase.auth().onAuthStateChanged(user => {
-        // Check if user is signed in:
-        if (user) {
-
-            //go to the correct user document by referencing to the user uid
-            currentUser = db.collection("userinfo").doc(user.uid)
-            //get the document for current user.
-            currentUser.get()
-                .then(userDoc => {
-                    //get the data fields of the user
-                    var user_name = userDoc.data().Name;
-                    var user_email = userDoc.data().userEmail;
-                    var user_phone = userDoc.data().userPhone;
-                    var user_mobile = userDoc.data().userMobile;
-                    var user_address = userDoc.data().userAddress;
-
-                    //if the data fields are not empty, then write them in to the form.
-                    if (fullName != null) {
-                        document.getElementById("full-name").value = user_name;
-                    }
-                    if (userEmail != null) {
-                        document.getElementById("email").value = user_email;
-                    }
-                    if (userPhone != null) {
-                        document.getElementById("phone").value = user_phone;
-                    }
-                    if (userMobile != null) {
-                        document.getElementById("mobile").value = user_mobile;
-                    }
-                    if (userAddress != null) {
-                        document.getElementById("address").value = user_address;
-                    }
-                })
-        } else {
-            // No user is signed in.
-            console.log ("No user is signed in");
-        }
+      if (user) {
+        var userID = user.uid;
+        db.collection("userinfo")
+          .where("userID", "==", userID)
+          .orderBy("timestamp", "desc")
+          .limit(1)
+          .get()
+          .then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+              const data = doc.data();
+              document.getElementById("full-name").value = data.Name;
+              document.getElementById("email").value = data.email;
+              document.getElementById("mobile").value = data.mobile;
+              document.getElementById("phone").value = data.phone;
+              document.getElementById("address").value = data.address;
+            });
+          })
+          .catch(error => {
+            console.log("Error getting user info: ", error);
+          });
+      } else {
+        console.log("No user is signed in");
+      }
     });
-}
-
-//call the function to run it 
-window.onload = populateUserInfo;
+  }
+  
+  //call the function to run it 
+populateUserInfo();
 
 function editUserInfo() {
   //Enable the form fields
