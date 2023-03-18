@@ -2,49 +2,50 @@
 <html lang="en">
 
 <head>
-  <title>My BCIT Project</title>
-  <meta name="Feature Menu" content="FARMergency Feature Listing">
+	<title>My BCIT Project</title>
+	<meta name="Feature Menu" content="FARMergency Feature Listing">
 
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap Library CSS CDN go here -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <!-- Boostrap Library JS CDN  go here -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
+	<!-- Bootstrap Library CSS CDN go here -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<!-- Boostrap Library JS CDN  go here -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+	</script>
 
-  <!-- Other libraries go here -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+	<!-- Other libraries go here -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
-  <!-- Link to styles of your own -->
-  <link rel="stylesheet" href="myprop.css">
+	<!-- Link to styles of your own -->
+	<link rel="stylesheet" href="myprop.css">
 
 
 </head>
 
 <body>
 
-  <!------------------------------>
-  <!-- Your HTML Layout go here -->
-  <!------------------------------>
+	<!------------------------------>
+	<!-- Your HTML Layout go here -->
+	<!------------------------------>
 
-  <nav id="navbar" class="mt-auto text-center"> </nav>
+	<nav id="navbar" class="mt-auto text-center"> </nav>
 
-  <h1>Personal Livestock Form</h1>
+	<h1>Personal Livestock Form</h1>
 
 	<form>
 		<label for="livestock-type">Select a livestock type:</label>
 		<select id="livestock-type">
+			<option value="None (default)">None</option>
 			<option value="cattle">Cattle</option>
 			<option value="pigs">Pigs</option>
 			<option value="sheep">Sheep</option>
@@ -53,7 +54,7 @@
 			<option value="other-livestock">Other livestock</option>
 			<option value="poultry-birds">Poultry/Birds</option>
 		</select>
-    <label for="capacity-number">Enter Current Quantity:</label>
+		<label for="capacity-number">Enter Current Quantity:</label>
 		<input type="number" id="livestock-number" name="livestock-number">
 		<button type="button" onclick="addLivestock()">Add Livestock</button>
 	</form>
@@ -63,6 +64,7 @@
 			<tr>
 				<th>Livestock Type</th>
 				<th>Number</th>
+				<th>Remove</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -101,32 +103,32 @@
 	<h1>Personal Transportation Form</h1>
 
 	<form>
-		<label for="transport-type">Enter the type of vehicle or trailer you have:</label>
+		<label for="transport-type">Enter vehicles and/or trailers if available for transport assistance: </label>
 		<input type="text" id="transport-type" name="transport-type">
 		<button type="submit">Submit</button>
 	</form>
- 
 
-  
 
-  <!-- </div> -->
-  <!---------------------------------------------->
-  <!-- Your own JavaScript functions go here    -->
-  <!---------------------------------------------->
 
-  <!-- Link to scripts of your own -->
-  <!-- <script src="./scripts/script.js"></script> -->
-  <script src="./scripts/firebaseAPI_BBY30.js"></script>
-  <script src="./scripts/skeleton_navbar.js"></script>
-  <script src="scripts/myprop.js"></script>
-  
-  
+
+	<!-- </div> -->
+	<!---------------------------------------------->
+	<!-- Your own JavaScript functions go here    -->
+	<!---------------------------------------------->
+
+	<!-- Link to scripts of your own -->
+	<!-- <script src="./scripts/script.js"></script> -->
+	<script src="./scripts/firebaseAPI_BBY30.js"></script>
+	<script src="./scripts/skeleton_navbar.js"></script>
+	<script src="scripts/personalLivestock.js"></script>
+
+
 </body>
 
 <footer class="footer mt-auto py-3 text-center">
-  <div class="container">
-    <span class="text-light">App by: Alex Gabl, Markus Lum-De Guzman, Seung-yeop Hyun</span>
-  </div>
+	<div class="container">
+		<span class="text-light">App by: Alex Gabl, Markus Lum-De Guzman, Seung-yeop Hyun</span>
+	</div>
 </footer>
 
 </html>
