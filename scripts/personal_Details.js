@@ -161,7 +161,7 @@ function chooseFileListener(){
 chooseFileListener();
 
 
-function saveUserInfo() {
+function saveUserPic() {
   firebase.auth().onAuthStateChanged(function (user) {
       var storageRef = storage.ref("images/" + user.uid + ".jpg");
 
@@ -187,7 +187,7 @@ function saveUserInfo() {
   })
 }
 
-function populateInfo() {
+function populatePicture() {
   firebase.auth().onAuthStateChanged(user => {
           if (user) {
 
@@ -212,4 +212,4 @@ function populateInfo() {
   )
 
 }
-populateInfo();
+populatePicture();
