@@ -31,6 +31,7 @@
 
   <!-- Link to styles of your own -->
   <link rel="stylesheet" href="navBarFooter.css">
+  <link rel="stylesheet" href="./styles/mainPageNavBar.css">
   <link href="'https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' /">
 
   <!-- Link to Mapbox CSS and Javascript files -->
@@ -41,7 +42,7 @@
   
 
   <style>
-    #map {
+    #mapTest {
       position: absolute;
       top: 120px;
       bottom: 120px;
@@ -62,22 +63,22 @@
 
 <body>
   <nav>
-    <span id="featureNavbar" class="navbar-brand fw-bolder text-dark">
+    <span id="mainPageNavBar" class="navbar-brand fw-bolder text-dark">
       <form class="form-inline my-2 my-lg-0 featureNavbar">
         <input id="searchBar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button id="searchButton" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </span>
-    <button onclick="goBack()" class="position-absolute top-0 start-0">
+    <!-- <button onclick="goBack()" class="position-absolute top-0 start-0">
       <svg xmlns="http://www.w3.org/2000/svg" width="115" height="115" fill="currentColor" class="bi bi-arrow-left "
         viewbox="0 0 16 16">
         <path fill-rule="evenodd"
           d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
       </svg>
-    </button>
+    </button> -->
   </nav>
 
-  <div id="map"></div>
+  <div id="mapTest"></div>
 
 
 
@@ -100,12 +101,13 @@
   <script src="./scripts/mainPage.js"></script>
   <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiYWpnYWJsIiwiYSI6ImNsZXFyN2pmaDBsbmQzcmxrdDN1bWR2dWQifQ.X2m-VshHfJA_ZpBixUPCaw';
+    
   
     var map = new mapboxgl.Map({
-      container: 'map',
+      container: 'mapTest',
       style: 'mapbox://styles/mapbox/streets-v11', 
-      center: [-74.5, 40], 
-      zoom: 9 
+      center: [-123.116226, 49.246292], 
+      zoom: 14 
     });
   </script>
   

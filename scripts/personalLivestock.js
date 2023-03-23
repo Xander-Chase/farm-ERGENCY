@@ -72,6 +72,8 @@ function populateLivestockTable() {
             var livestockType = doc.data().type;
             var livestockQuantity = doc.data().quantity;
 
+            console.log('---------> ', doc.data());
+
             // Add the livestock to the table
             var livestockTable = document.getElementById("livestock-table");
             var newRow = livestockTable.insertRow();
