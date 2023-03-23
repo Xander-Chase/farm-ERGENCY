@@ -139,3 +139,7 @@ function saveUserInfo() {
     }
   });
 }
+
+
+}
+populateInfo();
