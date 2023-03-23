@@ -37,9 +37,14 @@
   <!-- Link to Mapbox CSS and Javascript files -->
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet" />
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
-  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.1/mapbox-gl-geocoder.min.js"></script>
-  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.1/mapbox-gl-geocoder.css" type="text/css" />
-  
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.1/mapbox-gl-geocoder.min.js">
+  </script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+  <link rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.1/mapbox-gl-geocoder.css"
+    type="text/css" />
+
 
   <style>
     #mapTest {
@@ -78,6 +83,26 @@
     </button> -->
   </nav>
 
+  <!-- Main Body -->
+  <main>
+    <!-- MAPBOX -->
+    <h2>Map View Holder</h2>
+    <div id='map' style='width: 100%; height: 400px;'></div>
+    <!-- MAPBOX -->
+    <div>
+        <div class="card">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Need Suggestion?</h5>
+            <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione eos, molestias
+                dolore deleniti repellendus quam eligendi consequatur asperiores in nostrum ex error. Voluptatibus,
+                odio reiciendis, aliquam accusantium distinctio perferendis dolorum voluptatum odit delectus iste
+                quisquam impedit inventore eos unde perspiciatis nam earum ad rem, nesciunt quam? Laudantium
+                voluptates repellat unde.</p>
+        </div>
+    </div>
+</main>
+
   <div id="mapTest"></div>
 
   <footer id="footerlogin"></footer>
@@ -94,19 +119,20 @@
   <script src="./scripts/script.js"></script>
   <script src="./scripts/skeleton.js"></script>
   <script src="./scripts/skeleton2.js"></script>
+  <script src="./scripts/map.js"></script>
   <script src="./scripts/mainPage.js"></script>
-  <script>
+  <!-- <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiYWpnYWJsIiwiYSI6ImNsZXFyN2pmaDBsbmQzcmxrdDN1bWR2dWQifQ.X2m-VshHfJA_ZpBixUPCaw';
-    
-  
+
+
     var map = new mapboxgl.Map({
       container: 'mapTest',
-      style: 'mapbox://styles/mapbox/streets-v11', 
-      center: [-123.116226, 49.246292], 
-      zoom: 14 
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [-123.116226, 49.246292],
+      zoom: 14
     });
-  </script>
-  
+  </script> -->
+
   <script>
     function goBack() {
       window.history.back();

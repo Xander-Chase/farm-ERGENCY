@@ -1,21 +1,3 @@
-// Get the Firestore database instance
-
-
-// // Get a reference to the livestock collection
-// var livestockRef = db.collection("livestock_Personal");
-
-// // Query the livestock collection and get the documents
-// livestockRef.get().then((querySnapshot) => {
-//     querySnapshot.forEach((doc) => {
-//         // Get the livestock type and quantity from the document data
-//         var livestockType = doc.data().type;
-//         var livestockQuantity = doc.data().quantity;
-
-//         console.log('---------> ', doc.data());
-
-//     });
-// });
-
 // MAPBOX DISPLAY
 function showEventsOnMap() {
     // Defines basic mapbox data
@@ -44,18 +26,18 @@ function showEventsOnMap() {
                 map.addImage('eventpin', image); // Pin Icon
 
                 // READING information from "events" collection in Firestore
-                db.collection("userinfo").get().then(allEvents => {
+                db.collection("hikes").get().then(allEvents => {
                     allEvents.forEach(doc => {
                         // get hike Coordinates
-                        lat = doc.data().latitude;
-                        lng = doc.data().longitude;
-                        console.log(lat, lng);
+                        lat = doc.data().lat; 
+                        lng = doc.data().lng;
+                        console.log(lat,lng);
                         coordinates = [lng, lat];
                         console.log(coordinates);
                         //read name and the details of hike
-                        event_name = doc.data().Name; // Event Name
-                        preview = doc.data().mobile; // Text Preview
-
+                        event_name = doc.data().name; // Event Name
+                        preview = doc.data().details; // Text Preview
+         
 
                         // Pushes information into the features array
                         features.push({
@@ -86,7 +68,7 @@ function showEventsOnMap() {
                         'source': 'places',
                         'layout': {
                             'icon-image': 'eventpin', // Pin Icon
-                            'icon-size': 1, // Pin Size
+                            'icon-size': 0.1, // Pin Size
                             'icon-allow-overlap': true // Allows icons to overlap
                         }
                     });
