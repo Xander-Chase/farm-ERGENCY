@@ -23,9 +23,11 @@ function showEventsOnMap() {
     const map = new mapboxgl.Map({
         container: 'map', // Container ID
         style: 'mapbox://styles/mapbox/streets-v11', // Styling URL
-        center: [-122.964274, 49.236082], // Starting position
+        center: [-123.116226, 49.246292], // Starting position
         zoom: 8 // Starting zoom
     });
+
+    
 
     // Add user controls to map
     map.addControl(new mapboxgl.NavigationControl());
@@ -86,7 +88,7 @@ function showEventsOnMap() {
                         'source': 'places',
                         'layout': {
                             'icon-image': 'eventpin', // Pin Icon
-                            'icon-size': 1, // Pin Size
+                            'icon-size': 0.1, // Pin Size
                             'icon-allow-overlap': true // Allows icons to overlap
                         }
                     });
@@ -123,4 +125,4 @@ function showEventsOnMap() {
     })
 }
 
-showHikesOnMap()
+showEventsOnMap()
