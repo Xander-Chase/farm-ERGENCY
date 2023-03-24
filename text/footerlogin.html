@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <footer class="footer mt-auto py-3 text-center">
+  <!-- <footer class="footer mt-auto py-3 text-center">
     <div class="footer-buttons">
       <div id="list">
         <a href="../filter.html">
@@ -9,7 +9,67 @@
           <img src="../images/Icons/Filter list.png" width="120" height="120 alt="filter logo">
         </button>
         </a>
+      </div> -->
+<!-- 필터 버튼을 추가합니다. -->
+<button id="filterButton" class="position-absolute top-0 end-0" style="background-color: transparent; border:none;">
+  <img src="../images/Icons/Filter list.png" width="120" height="120" alt="filter logo">
+</button>
+
+<!-- 모달 창을 위한 HTML 코드를 작성합니다. -->
+<div id="filterModal" class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Filter</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Example select</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option>Option 1</option>
+              <option>Option 2</option>
+              <option>Option 3</option>
+              <option>Option 4</option>
+              <option>Option 5</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Example input</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter text">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 필터 버튼을 클릭했을 때 모달 창을 열도록 하는 JavaScript 코드입니다. -->
+<script>
+  $(document).ready(function() {
+    $('#filterButton').click(function() {
+      $('#filterModal').show();
+    });
+    $('.modal').click(function() {
+      $(this).hide();
+    });
+    $('.modal-dialog').click(function(event){
+      event.stopPropagation();
+    });
+  });
+</script>
+
+
+
+
+
+      
+      
 
       <div id="home">
         <a href="../featureMenu.html">
