@@ -28,31 +28,36 @@ function addLivestock() {
 
     // Add event listener to delete button
     var deleteButton = deleteCell.getElementsByTagName("button")[0];
-    deleteButton.addEventListener("click", function() {
+    deleteButton.addEventListener("click", function () {
         livestockTable.deleteRow(newRow.rowIndex);
     });
+
+    // Get the current user's ID
+    var user = firebase.auth().currentUser;
+    var userID = user.uid;
 
     // Write the data to Firestore
     var db = firebase.firestore();
     var livestockCollection = db.collection("livestock_Personal");
     livestockCollection.where("type", "==", livestockType).get()
-    .then(function(querySnapshot) {
-        if (querySnapshot.empty) {
-            livestockCollection.add({
-                type: livestockType,
-                quantity: livestockQuantity
-            })
-            .then(function(docRef) {
-                console.log("Document written with ID: ", docRef.id);
-            })
-            .catch(function(error) {
-                console.error("Error adding document: ", error);
-            });
-        }
-    })
-    .catch(function(error) {
-        console.error("Error getting documents: ", error);
-    });
+        .then(function (querySnapshot) {
+            if (querySnapshot.empty) {
+                livestockCollection.add({
+                        type: livestockType,
+                        quantity: livestockQuantity,
+                        userID: userID
+                    })
+                    .then(function (docRef) {
+                        console.log("Document written with ID: ", docRef.id);
+                    })
+                    .catch(function (error) {
+                        console.error("Error adding document: ", error);
+                    });
+            }
+        })
+        .catch(function (error) {
+            console.error("Error getting documents: ", error);
+        });
 }
 //calls function to run it
 addLivestock();
@@ -86,21 +91,21 @@ function populateLivestockTable() {
 
             // Add event listener to delete button
             var deleteButton = deleteCell.getElementsByTagName("button")[0];
-            deleteButton.addEventListener("click", function() {
+            deleteButton.addEventListener("click", function () {
                 // Delete the corresponding document from the collection
                 livestockRef.where("type", "==", livestockType).get()
-                .then(function(querySnapshot) {
-                    querySnapshot.forEach(function(doc) {
-                        doc.ref.delete().then(function() {
-                            console.log("Document successfully deleted!");
-                        }).catch(function(error) {
-                            console.error("Error removing document: ", error);
+                    .then(function (querySnapshot) {
+                        querySnapshot.forEach(function (doc) {
+                            doc.ref.delete().then(function () {
+                                console.log("Document successfully deleted!");
+                            }).catch(function (error) {
+                                console.error("Error removing document: ", error);
+                            });
                         });
+                    })
+                    .catch(function (error) {
+                        console.error("Error getting documents: ", error);
                     });
-                })
-                .catch(function(error) {
-                    console.error("Error getting documents: ", error);
-                });
                 // Remove the row from the table
                 livestockTable.deleteRow(newRow.rowIndex);
             });
@@ -110,5 +115,3 @@ function populateLivestockTable() {
 
 }
 populateLivestockTable();
-
-

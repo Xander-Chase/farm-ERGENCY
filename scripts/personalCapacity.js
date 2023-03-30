@@ -32,6 +32,10 @@ function addCapacity() {
         livestockTable.deleteRow(newRow.rowIndex);
     });
 
+    // Get the current user's ID
+    var user = firebase.auth().currentUser;
+    var userID = user.uid;
+
     // Write the data to Firestore
     var db = firebase.firestore();
     var livestockCollection = db.collection("livestock_Emergency_Capacity");
@@ -40,7 +44,8 @@ function addCapacity() {
         if (querySnapshot.empty) {
             livestockCollection.add({
                 type: livestockType,
-                quantity: livestockQuantity
+                quantity: livestockQuantity,
+                userID: userID
             })
             .then(function(docRef) {
                 console.log("Document written with ID: ", docRef.id);
@@ -108,5 +113,3 @@ function populateCapacityTable() {
 
 }
 populateCapacityTable();
-
-
