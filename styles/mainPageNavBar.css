@@ -66,3 +66,9 @@ footer {
   align-items: center;
   display: flex;
 }
+
+#signOut {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+}

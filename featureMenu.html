@@ -49,9 +49,8 @@
             grid-template-columns: 1fr 1fr;
             grid-template-areas:
                 "feature_Logo1 feature_Logo2"
-                "feature_Logo3 feature_Logo4"
-                "feature_Logo5 feature_Logo6"
-                "feature_Logo7 feature_Logo8"
+                "feature_Logo3 feature_Logo5"
+                "feature_Logo6"
         }
     </style>
 
@@ -64,6 +63,8 @@
     <!------------------------------>
 
     <nav id="navbar" class="mt-auto text-center"></nav>
+
+    <input id="signOut" type="image" class="position-absolute top-0 end-0" src="./images/Icons/Logout.png">
 
     <div class="feature_container">
 
@@ -84,13 +85,6 @@
             <a href="mainPage.html">
                 <button onclick="myFunction()"><img src="images\featureMenu\Logo3_Relocation_Search.png"
                         alt="feature_Logo3"></button>
-            </a>
-        </div>
-
-        <div id="feature_Logo4">
-            <a href="mainPageTransportOnly.html">
-                <button onclick="myFunction()"><img src="images\featureMenu\Logo4_Transportation_Search.png"
-                        alt="feature_Logo4"></button>
             </a>
         </div>
 
@@ -129,6 +123,8 @@
 
     <!-- Link to scripts of your own -->
     <!-- <script src="./scripts/script.js"></script> -->
+    <script src="./scripts/firebaseAPI_BBY30.js"></script>
+    <script src="./scripts/signout.js"></script>
     <script src="./scripts/skeleton_navbar.js"></script>
     <script src="./scripts/skeleton.js"></script>
 
