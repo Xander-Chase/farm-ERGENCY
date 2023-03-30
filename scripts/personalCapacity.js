@@ -60,25 +60,27 @@ function addCapacity() {
     });
 }
 //calls function to run it
-addLivestock();
+addCapacity();
 
 function populateCapacityTable() {
-
     // Get the Firestore database instance
     var db = firebase.firestore();
 
     // Get a reference to the livestock collection
     var livestockRef = db.collection("livestock_Emergency_Capacity");
 
+    // Clear the table before repopulating it
+    var livestockTable = document.getElementById("capacity-table");
+    livestockTable.innerHTML = "";
+
     // Query the livestock collection and get the documents
-    livestockRef.get().then((querySnapshot) => {
+    livestockRef.onSnapshot((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             // Get the livestock type and quantity from the document data
             var livestockType = doc.data().type;
             var livestockQuantity = doc.data().quantity;
 
             // Add the livestock to the table
-            var livestockTable = document.getElementById("capacity-table");
             var newRow = livestockTable.insertRow();
             var typeCell = newRow.insertCell(0);
             var quantityCell = newRow.insertCell(1);
@@ -109,7 +111,7 @@ function populateCapacityTable() {
             });
         });
     });
-
-
 }
+
+
 populateCapacityTable();
