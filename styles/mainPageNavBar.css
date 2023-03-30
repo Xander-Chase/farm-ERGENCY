@@ -9,6 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  top:0px;
 
 }
 
@@ -40,7 +41,7 @@
 #map {
   width: 100%;
   height: calc(100vh - 240px);
-  margin-top: 81px;
+  margin-top: 120px;
 }
 
 /* .button{

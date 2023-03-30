@@ -43,11 +43,13 @@ function saveAlert() {
         if (user) {
             var currentUser = db.collection("users").doc(user.uid)
             var userID = user.uid;
+            var Name = user.displayName;
             //get the document for current user.
             currentUser.get()
                 .then(userDoc => {
                     db.collection("alertForm").add({
                         userID: userID,
+                        Name: Name,
                         evacuation: evacuation,
                         transport: transport,
                         property: property,

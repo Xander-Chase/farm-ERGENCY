@@ -10,8 +10,11 @@ function showEventsOnMap() {
         zoom: 8 // Starting zoom
     });
 
+    
+
     // Add user controls to map
     map.addControl(new mapboxgl.NavigationControl());
+
 
     // Adds map features
     map.on('load', () => {
@@ -173,9 +176,12 @@ function showEventsOnMap() {
                     map.on('mouseleave', 'places', () => {
                         map.getCanvas().style.cursor = '';
                     });
+                    
                 })
 
             });
+
+            
     })
 }
 
