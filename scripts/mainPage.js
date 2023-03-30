@@ -53,12 +53,12 @@ function showEventsOnMap() {
                         email = doc.data().email; // User email
                         phone = doc.data().phone; // User phone number
 
-                        // Query the livestock_Emergency_Capacity collection and get the documents
-                        livestockRef.get().then((querySnapshot) => {
-                            querySnapshot.forEach((doc) => {
-                                // Get the livestock type and quantity from the document data
-                                livestockType = doc.data().type;
-                                livestockQuantity = doc.data().quantity;
+                        // // Query the livestock_Emergency_Capacity collection and get the documents
+                        // livestockRef.get().then((querySnapshot) => {
+                        //     querySnapshot.forEach((doc) => {
+                        //         // Get the livestock type and quantity from the document data
+                        //         livestockType = doc.data().type;
+                        //         livestockQuantity = doc.data().quantity;
 
                                 // Pushes information into the features array
                                 features.push({
@@ -75,8 +75,8 @@ function showEventsOnMap() {
                                         'coordinates': coordinates
                                     }
                                 });
-                            })
-                        })
+                        //     })
+                        // })
                     })
 
                 // // Get a reference to the livestock collection
