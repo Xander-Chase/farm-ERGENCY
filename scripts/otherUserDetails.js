@@ -56,7 +56,7 @@ function populateCapacityTable() {
     var db = firebase.firestore();
 
     // Get a reference to the livestock collection
-    var livestockRef = db.collection("livestock_Emergency_Capacity");
+    var livestockRef = db.collection("livestock_Emergency_Capacity").document(userID);
 
     // Clear the table before repopulating it
     var livestockTable = document.getElementById("capacity-table");

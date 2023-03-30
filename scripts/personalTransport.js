@@ -62,56 +62,67 @@ function addtransport() {
 //calls function to run it
 addtransport();
 
-function populateTransportTable() {
 
-    // Get the Firestore database instance
-    var db = firebase.firestore();
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        function populateTransportTable() {
 
-    // Get a reference to the livestock collection
-    var transportRef = db.collection("transport_Personal");
+            // Get the Firestore database instance
+            var db = firebase.firestore();
 
-    // Query the transport collection and get the documents
-    transportRef.get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            // Get the transport type and quantity from the document data
-            var transportType = doc.data().type;
-            var transportQuantity = doc.data().quantity;
+            // Get a reference to the livestock collection
+            var transportRef = db.collection("transport_Personal");
 
-            console.log('---------> ', doc.data());
+            console.log(user.uid);
 
-            // Add the transport vehicles to the table
-            var transportTable = document.getElementById("transport-table");
-            var newRow = transportTable.insertRow();
-            var typeCell = newRow.insertCell(0);
-            var quantityCell = newRow.insertCell(1);
-            var deleteCell = newRow.insertCell(2);
-            typeCell.innerHTML = transportType;
-            quantityCell.innerHTML = transportQuantity;
-            deleteCell.innerHTML = "<button>X</button>";
+            // Query the transport collection and get the documents
+            transportRef
+                .where("userID", "==", user.uid)
+                .get().then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        // Get the transport type and quantity from the document data
+                        var transportType = doc.data().type;
+                        var transportQuantity = doc.data().quantity;
 
-            // Add event listener to delete button
-            var deleteButton = deleteCell.getElementsByTagName("button")[0];
-            deleteButton.addEventListener("click", function () {
-                // Delete the corresponding document from the collection
-                transportRef.where("type", "==", transportType).get()
-                    .then(function (querySnapshot) {
-                        querySnapshot.forEach(function (doc) {
-                            doc.ref.delete().then(function () {
-                                console.log("Document successfully deleted!");
-                            }).catch(function (error) {
-                                console.error("Error removing document: ", error);
-                            });
+                        console.log('---------> ', doc.data());
+
+                        // Add the transport vehicles to the table
+                        var transportTable = document.getElementById("transport-table");
+                        var newRow = transportTable.insertRow();
+                        var typeCell = newRow.insertCell(0);
+                        var quantityCell = newRow.insertCell(1);
+                        var deleteCell = newRow.insertCell(2);
+                        typeCell.innerHTML = transportType;
+                        quantityCell.innerHTML = transportQuantity;
+                        deleteCell.innerHTML = "<button>X</button>";
+
+                        // Add event listener to delete button
+                        var deleteButton = deleteCell.getElementsByTagName("button")[0];
+                        deleteButton.addEventListener("click", function () {
+                            // Delete the corresponding document from the collection
+                            transportRef.where("type", "==", transportType).get()
+                                .then(function (querySnapshot) {
+                                    querySnapshot.forEach(function (doc) {
+                                        doc.ref.delete().then(function () {
+                                            console.log("Document successfully deleted!");
+                                        }).catch(function (error) {
+                                            console.error("Error removing document: ", error);
+                                        });
+                                    });
+                                })
+                                .catch(function (error) {
+                                    console.error("Error getting documents: ", error);
+                                });
+                            // Remove the row from the table
+                            transportTable.deleteRow(newRow.rowIndex);
                         });
-                    })
-                    .catch(function (error) {
-                        console.error("Error getting documents: ", error);
                     });
-                // Remove the row from the table
-                transportTable.deleteRow(newRow.rowIndex);
-            });
-        });
-    });
+                });
 
 
-}
-populateTransportTable();
+        }
+        populateTransportTable();
+    } else {
+        // No user is signed in.
+    }
+});
