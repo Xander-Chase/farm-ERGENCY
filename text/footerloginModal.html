@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <!-- <footer class="footer mt-auto py-3 text-center">
+    <div class="footer-buttons">
+      <div id="list">
+        <a href="../filter.html">
+        <button onclick="myFunction()" class="position-absolute top-0 end-0" style="background-color: transparent; border:none;">
+
+          <img src="../images/Icons/Filter list.png" width="120" height="120 alt="filter logo">
+        </button>
+        </a>
+      </div> -->
+
+      <link href="../styles/filterModal.css" rel="stylesheet">
+
+<button id="filterButton" class="position-absolute top-0 end-0" style="background-color: transparent; border:none;">
+  <img src="../images/Icons/Filter list.png" width="120" height="120" alt="filter logo">
+</button>
+
+<div id="filterModal" class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Filter</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Example select</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option>Option 1</option>
+              <option>Option 2</option>
+              <option>Option 3</option>
+              <option>Option 4</option>
+              <option>Option 5</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Example input</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter text">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('#filterButton').click(function() {
+      $('#filterModal').show();
+    });
+    $('.modal').click(function() {
+      $(this).hide();
+    });
+    $('.modal-dialog').click(function(event){
+      event.stopPropagation();
+    });
+  });
+</script>
+
+
+      <div id="home">
+        <a href="../featureMenu.html">
+          <button onclick="myFunction()" class="position-absolute top-0 start-50 translate-middle-x" style="background-color: transparent; border:none;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" fill="currentColor"
+              class="bi bi-house-door-fill" viewbox="0 0 16 16">
+              <path
+                d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z" />
+            </svg>
+          </button>
+        </a>
+      </div>
+      
+      <div id="notification">
+        <a href="../notifications.html">
+          <button onclick="myFunction()" class="position-absolute top-0 start-0" style="background-color: transparent; border:none;">
+            <img src="../images/Icons/Alarm.png" alt="filter logo">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" fill="currentColor"
+              class="bi bi-house-door-fill" viewbox="0 0 16 16">
+              <path
+                d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z" />
+            </svg> -->
+          </button>
+        </a>
+      </div>
+    </div>
+  
+  </footer>
+
+  
+</html>
