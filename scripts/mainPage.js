@@ -50,6 +50,9 @@ function showEventsOnMap() {
           function () {
             // Handle location permission denied or unavailable
             console.log("Could not get user location");
+          },
+          {
+            enableHighAccuracy: true
           }
         );
 
