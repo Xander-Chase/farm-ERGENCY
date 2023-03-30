@@ -1,129 +1,52 @@
-// MAPBOX DISPLAY
-function showEventsOnMap() {
-
-    // Defines basic mapbox data
-    mapboxgl.accessToken = 'pk.eyJ1IjoiYWpnYWJsIiwiYSI6ImNsZXFyN2pmaDBsbmQzcmxrdDN1bWR2dWQifQ.X2m-VshHfJA_ZpBixUPCaw';
-    const map = new mapboxgl.Map({
-        container: 'map', // Container ID
-        style: 'mapbox://styles/mapbox/streets-v11', // Styling URL
-        center: [-123.116226, 49.246292], // Starting position
-        zoom: 8 // Starting zoom
+// Get the userID from the query parameter
+var urlParams = new URLSearchParams(window.location.search);
+var userID = urlParams.get('id');
+db.collection("userinfo")
+    .where("userID", "==", userID)
+    .orderBy("timestamp", "desc")
+    .limit(1)
+    .get()
+    .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+            const data = doc.data();
+            document.getElementById("full-name").value = data.Name;
+            document.getElementById("email").value = data.email;
+            document.getElementById("mobile").value = data.mobile;
+            document.getElementById("phone").value = data.phone;
+            document.getElementById("address").value = data.address;
+        });
+    })
+    .catch(error => {
+        console.log("Error getting user info: ", error);
     });
 
-    // Add user controls to map
-    map.addControl(new mapboxgl.NavigationControl());
+function populateCapacityTable(userID) {
 
-    // Adds map features
-    map.on('load', () => {
-        const features = []; // Defines an empty array for information to be added to
+    // Get the Firestore database instance
+    var db = firebase.firestore();
 
-        // Defines map pin icon
-        map.loadImage(
-            'https://cdn.iconscout.com/icon/free/png-256/pin-locate-marker-location-navigation-16-28668.png',
-            (error, image) => {
-                if (error) throw error;
+    // Get a reference to the user's livestock collection
+    var livestockRef = db.collection("users").doc(userID).collection("livestock_Emergency_Capacity");
 
-                // Add the image to the map style.
-                map.addImage('eventpin', image); // Pin Icon
+    // Query the livestock collection and get the documents
+    livestockRef.get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            // Get the livestock type and quantity from the document data
+            var livestockType = doc.data().type;
+            var livestockQuantity = doc.data().quantity;
 
-                // READING information from "userinfo" collection in Firestore
-                db.collection("userinfo").get().then(allEvents => {
-                    allEvents.forEach(doc => {
-                        // get user address Coordinates
-                        lat = doc.data().latitude;
-                        lng = doc.data().longitude;
-                        console.log(lat, lng);
-                        coordinates = [lng, lat];
-                        console.log(coordinates);
-                        //read name and the details of userinfo
-                        event_name = doc.data().Name; // Event Name
-                        mobile = doc.data().mobile; // User mobile number
-                        email = doc.data().email; // User email
-                        phone = doc.data().phone; // User phone number
-
-                        // Get the Firestore database instance
-                        var db = firebase.firestore();
-
-                        // Get a reference to the livestock collection
-                        var livestockRef = db.collection("livestock_Emergency_Capacity");
-
-                        // // Query the livestock collection and get the documents
-                        // livestockRef.get().then((querySnapshot) => {
-                        //     querySnapshot.forEach((doc) => {
-                        //         // Get the livestock type and quantity from the document data
-                                livestockType = doc.data().type;
-                                livestockQuantity = doc.data().quantity;
-
-                                // Pushes information into the features array
-                                features.push({
-                                    'type': 'Feature',
-                                    'properties': {
-                                        'description': `<strong>${"User Info: " + event_name}</strong>
-                                         <p>${"Mobile: " + mobile}</p>
-                                         <p>${"Phone: " + phone}</p> 
-                                         <p>${"Email: " + email}</p> 
-                                         <a href="/hike.html?id=${doc.id}" target="_blank" title="Opens the users profile in a new window">Read more</a>`
-                                    },
-                                    'geometry': {
-                                        'type': 'Point',
-                                        'coordinates': coordinates
-                                    }
-                                });
-                        //     })
-                        // })
-                    })
-
-                    // Adds features as a source to the map
-                    map.addSource('places', {
-                        'type': 'geojson',
-                        'data': {
-                            'type': 'FeatureCollection',
-                            'features': features
-                        }
-                    });
-
-                    // Creates a layer above the map displaying the pins
-                    map.addLayer({
-                        'id': 'places',
-                        'type': 'symbol',
-                        'source': 'places',
-                        'layout': {
-                            'icon-image': 'eventpin', // Pin Icon
-                            'icon-size': 0.2, // Pin Size
-                            'icon-allow-overlap': true // Allows icons to overlap
-                        }
-                    });
-
-                    // Map On Click function that creates a popup, displaying previously defined information from "events" collection in Firestore
-                    map.on('click', 'places', (e) => {
-                        // Copy coordinates array.
-                        const coordinates = e.features[0].geometry.coordinates.slice();
-                        const description = e.features[0].properties.description;
-
-                        // Ensure that if the map is zoomed out such that multiple copies of the feature are visible, the popup appears over the copy being pointed to.
-                        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                        }
-
-                        new mapboxgl.Popup()
-                            .setLngLat(coordinates)
-                            .setHTML(description)
-                            .addTo(map);
-                    });
-
-                    // Change the cursor to a pointer when the mouse is over the places layer.
-                    map.on('mouseenter', 'places', () => {
-                        map.getCanvas().style.cursor = 'pointer';
-                    });
-
-                    // Defaults cursor when not hovering over the places layer
-                    map.on('mouseleave', 'places', () => {
-                        map.getCanvas().style.cursor = '';
-                    });
-                })
-
-            });
-    })
+            // Add the livestock to the table
+            var livestockTable = document.getElementById("capacity-table");
+            var newRow = livestockTable.insertRow();
+            var typeCell = newRow.insertCell(0);
+            var quantityCell = newRow.insertCell(1);
+            var deleteCell = newRow.insertCell(2);
+            typeCell.innerHTML = livestockType;
+            quantityCell.innerHTML = livestockQuantity;
+        });
+    });
 }
 
-showEventsOnMap()
+
+// Populate the table with the user's livestock data
+populateCapacityTable(userID);
