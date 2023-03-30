@@ -41,7 +41,8 @@
 
 	<nav id="navbar" class="mt-auto text-center"> </nav>
 
-	<h1>Personal Livestock Form</h1>
+	<h1>Personal Livestock</h1>
+	<h4>Enter the livestock that you currently own</h4>
 
 	<form>
 		<label for="livestock-type">Select a livestock type:</label>
@@ -71,7 +72,9 @@
 		</tbody>
 	</table>
 
-	<h1>Emergency Livestock Capacity Form</h1>
+	<h1>Emergency Livestock Capacity</h1>
+	<h4>If you are able to help shelter another person's livestock in an emergency,</h4>
+	<h4>Enter the types and quantity of livestock that you would be able to shelter</h4>
 
 	<form>
 		<label for="capacity-type">Select a livestock type:</label>
@@ -101,18 +104,31 @@
 		</tbody>
 	</table>
 
-	<h1>Personal Transportation Form</h1>
+	<h1>Personal Transportation</h1>
+	<h4>If you are available to help with the transport of livestock in fleeing a disaster situation,</h4>
+	<h4>Enter the types of transport vehicles that would be available to support in relocation effots.</h4>
 
 	<form>
-		<label for="transport-type">Enter vehicles and/or trailers if available for transport assistance: </label>
-		<input type="text" id="transport-type" name="transport-type">
-		<button type="submit">Submit</button>
+		<label for="transport-type">Select a transport vehicle type:</label>
+		<select id="transport-type">
+			<option value="Pickup">Pickup Truck</option>
+			<option value="Semi-Truck">Semi-Truck</option>
+			<option value="Semi-Trailer">Semi-Truck with empty trailer</option>
+			<option value="2horse">2 horse trailer</option>
+			<option value="4horse">4 horse trailer</option>
+			<option value="5horse">5+ horse trailer</option>
+			<option value="Poultry">Poultry trailer</option>
+		</select>
+		<label for="transport-number">Enter the maximum capacity:</label>
+		<input type="number" id="transport-number" name="transport-number">
+		<button type="button" onclick="addtransport()">Add Transport</button>
 	</form>
 
-	<table id="transportation-table">
+	<table id="transport-table">
 		<thead>
 			<tr>
-				<th>Transportation Type</th>
+				<th>Transport Type</th>
+				<th>Quantity</th>
 				<th>Remove</th>
 			</tr>
 		</thead>
@@ -121,9 +137,6 @@
 	</table>
 
 
-
-
-	<!-- </div> -->
 	<!---------------------------------------------->
 	<!-- Your own JavaScript functions go here    -->
 	<!---------------------------------------------->
@@ -134,6 +147,7 @@
 	<script src="./scripts/skeleton_navbar.js"></script>
 	<script src="scripts/personalLivestock.js"></script>
 	<script src="scripts/personalCapacity.js"></script>
+	<script src="scripts/personalTransport.js"></script>
 
 
 </body>
