@@ -140,3 +140,21 @@ function showEventsOnMap() {
 }
 
 showEventsOnMap()
+
+if ("geolocation" in navigator) { 
+    navigator.geolocation.getCurrentPosition(position => { 
+        var map = new mapboxgl.Map({
+        // container id specified in the HTML
+          container: 'map',
+
+          style: 'mapbox://styles/mapbox/streets-v11', // Styling URL
+
+         // initial position in [lon, lat] format
+          center: [position.coords.longitude, position.coords.latitude],
+
+         // initial zoom
+
+         zoom: 14
+        });
+    }); 
+} else { /* geolocation IS NOT available, handle it */ }
