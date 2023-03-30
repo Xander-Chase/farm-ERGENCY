@@ -26,17 +26,8 @@ function showEventsOnMap() {
                 // Add the image to the map style.
                 map.addImage('eventpin', image); // Pin Icon
 
-                // Get the Firestore database instance
-                var db = firebase.firestore();
-
-                // Get a reference to the userinfo collection
-                var userinfoRef = db.collection("userinfo");
-
-                // Get a reference to the livestock_Emergency_Capacity collection
-                var livestockRef = db.collection("livestock_Emergency_Capacity");
-
                 // READING information from "userinfo" collection in Firestore
-                userinfoRef.get().then(allEvents => {
+                db.collection("userinfo").get().then(allEvents => {
                     allEvents.forEach(doc => {
                         // get user address Coordinates
                         lat = doc.data().latitude;
@@ -50,10 +41,16 @@ function showEventsOnMap() {
                         email = doc.data().email; // User email
                         phone = doc.data().phone; // User phone number
 
-                        // Query the livestock_Emergency_Capacity collection and get the documents
-                        livestockRef.get().then((querySnapshot) => {
-                            querySnapshot.forEach((doc) => {
-                                // Get the livestock type and quantity from the document data
+                        // Get the Firestore database instance
+                        var db = firebase.firestore();
+
+                        // Get a reference to the livestock collection
+                        var livestockRef = db.collection("livestock_Emergency_Capacity");
+
+                        // // Query the livestock collection and get the documents
+                        // livestockRef.get().then((querySnapshot) => {
+                        //     querySnapshot.forEach((doc) => {
+                        //         // Get the livestock type and quantity from the document data
                                 livestockType = doc.data().type;
                                 livestockQuantity = doc.data().quantity;
 
@@ -65,66 +62,16 @@ function showEventsOnMap() {
                                          <p>${"Mobile: " + mobile}</p>
                                          <p>${"Phone: " + phone}</p> 
                                          <p>${"Email: " + email}</p> 
-                                         <a href="otherUserDetails.html?id=${doc.id}" target="_blank" title="Opens the users profile in a new window">Read more</a>`
+                                         <a href="/hike.html?id=${doc.id}" target="_blank" title="Opens the users profile in a new window">Read more</a>`
                                     },
                                     'geometry': {
                                         'type': 'Point',
                                         'coordinates': coordinates
                                     }
                                 });
-                            })
-                        })
+                        //     })
+                        // })
                     })
-
-                // // Get a reference to the livestock collection
-                // var livestockRef = db.collection("livestock_Emergency_Capacity");
-
-                // // READING information from "userinfo" collection in Firestore
-                // db.collection("userinfo").get().then(allEvents => {
-                //     allEvents.forEach(doc => {
-                //         // get user address Coordinates
-                //         lat = doc.data().latitude;
-                //         lng = doc.data().longitude;
-                //         console.log(lat, lng);
-                //         coordinates = [lng, lat];
-                //         console.log(coordinates);
-                //         //read name and the details of userinfo
-                //         event_name = doc.data().Name; // Event Name
-                //         mobile = doc.data().mobile; // User mobile number
-                //         email = doc.data().email; // User email
-                //         phone = doc.data().phone; // User phone number
-
-                //         // Get the Firestore database instance
-                //         var db = firebase.firestore();
-
-                //         // Get a reference to the livestock collection
-                //         var livestockRef = db.collection("livestock_Emergency_Capacity");
-
-                //         // // Query the livestock collection and get the documents
-                //         // livestockRef.get().then((querySnapshot) => {
-                //         //     querySnapshot.forEach((doc) => {
-                //         //         // Get the livestock type and quantity from the document data
-                //         livestockType = doc.data().type;
-                //         livestockQuantity = doc.data().quantity;
-
-                //         // Pushes information into the features array
-                //         features.push({
-                //             'type': 'Feature',
-                //             'properties': {
-                //                 'description': `<strong>${"User Info: " + event_name}</strong>
-                //                          <p>${"Mobile: " + mobile}</p>
-                //                          <p>${"Phone: " + phone}</p> 
-                //                          <p>${"Email: " + email}</p> 
-                //                          <a href="otherUserDetails.html?id=${doc.id}" target="_blank" title="Opens the users profile in a new window">Read more</a>`
-                //             },
-                //             'geometry': {
-                //                 'type': 'Point',
-                //                 'coordinates': coordinates
-                //             }
-                //         });
-                //         //     })
-                //         // })
-                //     })
 
                     // Adds features as a source to the map
                     map.addSource('places', {

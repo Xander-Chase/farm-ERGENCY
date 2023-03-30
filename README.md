@@ -6,7 +6,7 @@ This browser based web application to ...
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
-* ...Hello I'm Alex, learning programming is not easy. 
+* Hello I'm Alex, and I'm looking forward to completing this app and potentially working on it further after this course.  
 * My name is Markus Lum-De Guzman, and I am very excited to do well in this course!
 * ...Hello my name is Seung-yeop
 	
