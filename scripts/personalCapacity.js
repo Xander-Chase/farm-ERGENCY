@@ -62,67 +62,133 @@ function addCapacity() {
 //calls function to run it
 addCapacity();
 
-
+// Get the current user's ID
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
+        function populateLivestockTable() {
 
-        function populateCapacityTable() {
             // Get the Firestore database instance
             var db = firebase.firestore();
 
             // Get a reference to the livestock collection
             var livestockRef = db.collection("livestock_Emergency_Capacity");
 
-            // Identify table to be populated
-            var livestockTable = document.getElementById("capacity-table");
-            livestockTable.innerHTML = "";
+            console.log(user.uid);
 
             // Query the livestock collection and get the documents
             livestockRef
-            .where("userID", "==", user.uid)
-            .onSnapshot((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
+                .where("userID", "==", user.uid)
+                .get().then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        // Get the livestock type and quantity from the document data
+                        var livestockType = doc.data().type;
+                        var livestockQuantity = doc.data().quantity;
 
-                    // Get the livestock type and quantity from the document data
-                    var livestockType = doc.data().type;
-                    var livestockQuantity = doc.data().quantity;
+                        console.log('---------> ', doc.data());
 
-                    // Add the livestock to the table
-                    var newRow = livestockTable.insertRow();
-                    var typeCell = newRow.insertCell(0);
-                    var quantityCell = newRow.insertCell(1);
-                    var deleteCell = newRow.insertCell(2);
-                    typeCell.innerHTML = livestockType;
-                    quantityCell.innerHTML = livestockQuantity;
-                    deleteCell.innerHTML = "<button>X</button>";
+                        // Add the livestock to the table
+                        var livestockTable = document.getElementById("capacity-table");
+                        var newRow = livestockTable.insertRow();
+                        var typeCell = newRow.insertCell(0);
+                        var quantityCell = newRow.insertCell(1);
+                        var deleteCell = newRow.insertCell(2);
+                        typeCell.innerHTML = livestockType;
+                        quantityCell.innerHTML = livestockQuantity;
+                        deleteCell.innerHTML = "<button>X</button>";
 
-                    // Add event listener to delete button
-                    var deleteButton = deleteCell.getElementsByTagName("button")[0];
-                    deleteButton.addEventListener("click", function () {
-                        // Delete the corresponding document from the collection
-                        livestockRef.where("type", "==", livestockType).get()
-                            .then(function (querySnapshot) {
-                                querySnapshot.forEach(function (doc) {
-                                    doc.ref.delete().then(function () {
-                                        console.log("Document successfully deleted!");
-                                    }).catch(function (error) {
-                                        console.error("Error removing document: ", error);
+                        // Add event listener to delete button
+                        var deleteButton = deleteCell.getElementsByTagName("button")[0];
+                        deleteButton.addEventListener("click", function () {
+                            // Delete the corresponding document from the collection
+                            livestockRef.where("type", "==", livestockType).get()
+                                .then(function (querySnapshot) {
+                                    querySnapshot.forEach(function (doc) {
+                                        doc.ref.delete().then(function () {
+                                            console.log("Document successfully deleted!");
+                                        }).catch(function (error) {
+                                            console.error("Error removing document: ", error);
+                                        });
                                     });
+                                })
+                                .catch(function (error) {
+                                    console.error("Error getting documents: ", error);
                                 });
-                            })
-                            .catch(function (error) {
-                                console.error("Error getting documents: ", error);
-                            });
-                        // Remove the row from the table
-                        livestockTable.deleteRow(newRow.rowIndex);
+                            // Remove the row from the table
+                            livestockTable.deleteRow(newRow.rowIndex);
+                        });
                     });
                 });
-            });
+
+
         }
-
-
-        populateCapacityTable();
+        populateLivestockTable();
     } else {
         // No user is signed in.
     }
 });
+
+
+
+// firebase.auth().onAuthStateChanged(function (user) {
+//     if (user) {
+
+//         function populateCapacityTable() {
+//             // Get the Firestore database instance
+//             var db = firebase.firestore();
+
+//             // Get a reference to the livestock collection
+//             var livestockRef = db.collection("livestock_Emergency_Capacity");
+
+//             // Identify table to be populated
+//             var livestockTable = document.getElementById("capacity-table");
+//             livestockTable.innerHTML = "";
+
+//             // Query the livestock collection and get the documents
+//             livestockRef
+//             .where("userID", "==", user.uid)
+//             .onSnapshot((querySnapshot) => {
+//                 querySnapshot.forEach((doc) => {
+
+//                     // Get the livestock type and quantity from the document data
+//                     var livestockType = doc.data().type;
+//                     var livestockQuantity = doc.data().quantity;
+
+//                     // Add the livestock to the table
+//                     var newRow = livestockTable.insertRow();
+//                     var typeCell = newRow.insertCell(0);
+//                     var quantityCell = newRow.insertCell(1);
+//                     var deleteCell = newRow.insertCell(2);
+//                     typeCell.innerHTML = livestockType;
+//                     quantityCell.innerHTML = livestockQuantity;
+//                     deleteCell.innerHTML = "<button>X</button>";
+
+//                     // Add event listener to delete button
+//                     var deleteButton = deleteCell.getElementsByTagName("button")[0];
+//                     deleteButton.addEventListener("click", function () {
+//                         // Delete the corresponding document from the collection
+//                         livestockRef.where("type", "==", livestockType).get()
+//                             .then(function (querySnapshot) {
+//                                 querySnapshot.forEach(function (doc) {
+//                                     doc.ref.delete().then(function () {
+//                                         console.log("Document successfully deleted!");
+//                                     }).catch(function (error) {
+//                                         console.error("Error removing document: ", error);
+//                                     });
+//                                 });
+//                             })
+//                             .catch(function (error) {
+//                                 console.error("Error getting documents: ", error);
+//                             });
+//                         // Remove the row from the table
+//                         livestockTable.deleteRow(newRow.rowIndex);
+//                     });
+//                 });
+//             });
+//         }
+
+
+//         populateCapacityTable();
+//     } else {
+//         // No user is signed in.
+//     }
+// });

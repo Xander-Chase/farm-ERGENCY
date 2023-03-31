@@ -61,39 +61,37 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
+        function populateTransportTable() {
 
-        function populateCapacityTable() {
             // Get the Firestore database instance
             var db = firebase.firestore();
 
             // Get a reference to the livestock collection
-            var livestockRef = db.collection("livestock_Emergency_Capacity");
+            var transportRef = db.collection("livestock_Emergency_Capacity");
 
-            // Identify table to be populated
-            var livestockTable = document.getElementById("capacity-table");
-            livestockTable.innerHTML = "";
+            // Query the transport collection and get the documents
+            transportRef
+                .where("userID", "==", userID)
+                .get().then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        // Get the transport type and quantity from the document data
+                        var transportType = doc.data().type;
+                        var transportQuantity = doc.data().quantity;
 
-            // Query the livestock collection and get the documents
-            livestockRef
-            .where("userID", "==", userID)
-            .onSnapshot((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
+                        console.log('---------> ', doc.data());
 
-                    // Get the livestock type and quantity from the document data
-                    var livestockType = doc.data().type;
-                    var livestockQuantity = doc.data().quantity;
-
-                    // Add the livestock to the table
-                    var newRow = livestockTable.insertRow();
-                    var typeCell = newRow.insertCell(0);
-                    var quantityCell = newRow.insertCell(1);
-                    var deleteCell = newRow.insertCell(2);
-                    typeCell.innerHTML = livestockType;
-                    quantityCell.innerHTML = livestockQuantity;
+                        // Add the transport vehicles to the table
+                        var transportTable = document.getElementById("capacity-table");
+                        var newRow = transportTable.insertRow();
+                        var typeCell = newRow.insertCell(0);
+                        var quantityCell = newRow.insertCell(1);
+                        var deleteCell = newRow.insertCell(2);
+                        typeCell.innerHTML = transportType;
+                        quantityCell.innerHTML = transportQuantity;
+                    });
                 });
-            });
         }
-        populateCapacityTable();
+        populateTransportTable();
     } else {
         // No user is signed in.
     }
