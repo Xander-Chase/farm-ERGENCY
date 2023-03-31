@@ -21,89 +21,107 @@ db.collection("userinfo")
     });
 
 
-function populateTransportTable() {
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        function populateTransportTable() {
 
-    // Get the Firestore database instance
-    var db = firebase.firestore();
+            // Get the Firestore database instance
+            var db = firebase.firestore();
 
-    // Get a reference to the livestock collection
-    var transportRef = db.collection("transport_Personal");
+            // Get a reference to the livestock collection
+            var transportRef = db.collection("transport_Personal");
 
-    // Query the transport collection and get the documents
-    transportRef.get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            // Get the transport type and quantity from the document data
-            var transportType = doc.data().type;
-            var transportQuantity = doc.data().quantity;
+            // Query the transport collection and get the documents
+            transportRef
+                .where("userID", "==", userID)
+                .get().then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        // Get the transport type and quantity from the document data
+                        var transportType = doc.data().type;
+                        var transportQuantity = doc.data().quantity;
 
-            console.log('---------> ', doc.data());
+                        console.log('---------> ', doc.data());
 
-            // Add the transport vehicles to the table
-            var transportTable = document.getElementById("transport-table");
-            var newRow = transportTable.insertRow();
-            var typeCell = newRow.insertCell(0);
-            var quantityCell = newRow.insertCell(1);
-            var deleteCell = newRow.insertCell(2);
-            typeCell.innerHTML = transportType;
-            quantityCell.innerHTML = transportQuantity;
-        });
-    });
-}
-populateTransportTable();
+                        // Add the transport vehicles to the table
+                        var transportTable = document.getElementById("transport-table");
+                        var newRow = transportTable.insertRow();
+                        var typeCell = newRow.insertCell(0);
+                        var quantityCell = newRow.insertCell(1);
+                        var deleteCell = newRow.insertCell(2);
+                        typeCell.innerHTML = transportType;
+                        quantityCell.innerHTML = transportQuantity;
+                    });
+                });
+        }
+        populateTransportTable();
+    } else {
+        // No user is signed in.
+    }
+});
 
-function populateCapacityTable() {
-    // Get the Firestore database instance
-    var db = firebase.firestore();
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
 
-    // Get a reference to the livestock collection
-    var livestockRef = db.collection("livestock_Emergency_Capacity").document(userID);
+        function populateCapacityTable() {
+            // Get the Firestore database instance
+            var db = firebase.firestore();
 
-    // Clear the table before repopulating it
-    var livestockTable = document.getElementById("capacity-table");
-    livestockTable.innerHTML = "";
+            // Get a reference to the livestock collection
+            var livestockRef = db.collection("livestock_Emergency_Capacity");
 
-    // Query the livestock collection and get the documents
-    livestockRef.onSnapshot((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            // Get the livestock type and quantity from the document data
-            var livestockType = doc.data().type;
-            var livestockQuantity = doc.data().quantity;
+            // Identify table to be populated
+            var livestockTable = document.getElementById("capacity-table");
+            livestockTable.innerHTML = "";
 
-            // Add the livestock to the table
-            var newRow = livestockTable.insertRow();
-            var typeCell = newRow.insertCell(0);
-            var quantityCell = newRow.insertCell(1);
-            var deleteCell = newRow.insertCell(2);
-            typeCell.innerHTML = livestockType;
-            quantityCell.innerHTML = livestockQuantity;
-        });
-    });
-}
-populateCapacityTable();
+            // Query the livestock collection and get the documents
+            livestockRef
+            .where("userID", "==", userID)
+            .onSnapshot((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+
+                    // Get the livestock type and quantity from the document data
+                    var livestockType = doc.data().type;
+                    var livestockQuantity = doc.data().quantity;
+
+                    // Add the livestock to the table
+                    var newRow = livestockTable.insertRow();
+                    var typeCell = newRow.insertCell(0);
+                    var quantityCell = newRow.insertCell(1);
+                    var deleteCell = newRow.insertCell(2);
+                    typeCell.innerHTML = livestockType;
+                    quantityCell.innerHTML = livestockQuantity;
+                });
+            });
+        }
+        populateCapacityTable();
+    } else {
+        // No user is signed in.
+    }
+});
+
 
 function populatePicture() {
     firebase.auth().onAuthStateChanged(user => {
             if (user) {
-  
-                currentUser = db.collection("users").doc(user.uid);
-  
+
+                currentUser = db.collection("users").doc(userID);
+
                 currentUser.get()
                     .then(userDoc => {
-                        let picUrl = userDoc.data().profilePic; 
-                        if (picUrl != null){
+                        let picUrl = userDoc.data().profilePic;
+                        if (picUrl != null) {
                             console.log(picUrl);
                             $("#mypic-goes-here").attr("src", picUrl);
-                        }
-                        else
-                        console.log("picURL is null");
+                        } else
+                            console.log("picURL is null");
                     })
-  
+
             } else {
                 console.log("no user is logged in")
             }
         }
-  
+
     )
-  
-  }
-  populatePicture();
+
+}
+populatePicture();

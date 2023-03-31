@@ -50,8 +50,7 @@ function showEventsOnMap() {
           function () {
             // Handle location permission denied or unavailable
             console.log("Could not get user location");
-          },
-          {
+          }, {
             enableHighAccuracy: true
           }
         );
@@ -78,11 +77,12 @@ function showEventsOnMap() {
             features.push({
               type: "Feature",
               properties: {
-                description: `<strong>${"User Info: " + event_name}</strong>
-                                         <p>${"Mobile: " + mobile}</p>
-                                         <p>${"Phone: " + phone}</p> 
-                                         <p>${"Email: " + email}</p>  
-                                         <a href="otherUserDetails.html?id=${userID}" target="_blank" title="Opens the users profile in a new window">Read more</a>`,
+                description: `<strong style="font-size: 20px">${"User Info: " + event_name}</strong>
+                      <p style="font-size: 16px">${"Mobile: " + mobile}</p>
+                      <p style="font-size: 16px">${"Phone: " + phone}</p> 
+                      <p style="font-size: 16px">${"Email: " + email}</p>  
+                      <a href="otherUserDetails.html?id=${userID}" target="_blank" 
+                      title="Opens the users profile in a new window">Read more</a>`,
               },
               geometry: {
                 type: "Point",
