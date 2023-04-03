@@ -1,7 +1,6 @@
 // MAPBOX DISPLAY
 function showEventsOnMap() {
 
-  var filterName = 'horses';
   // TO MAKE THE MAP APPEAR YOU MUST
   // ADD YOUR ACCESS TOKEN FROM
   // https://account.mapbox.com
@@ -95,7 +94,7 @@ function showEventsOnMap() {
               phone = doc.data().phone; // User phone number
               userID = doc.data().userID; // to get userID
 
-              //filter stuff
+
               var capacityByIds = capacities.docs.filter(element => element.data().userID === doc.data().userID);
 
               let emergencyCapacitiesHtml = '';
@@ -103,7 +102,6 @@ function showEventsOnMap() {
                 emergencyCapacitiesHtml += ` <p>Type: ${capacity.data().type}</p><p>Quantities: ${capacity.data().quantity}</p>`
               });
 
-              if (filterName && capacityByIds.find(c => c.data().type === filterName)){
               // Pushes information into the features array
               features.push({
                 type: "Feature",
@@ -121,8 +119,6 @@ function showEventsOnMap() {
                   coordinates: coordinates,
                 },
               });
-              }
-
               //     })
               // })
             });
