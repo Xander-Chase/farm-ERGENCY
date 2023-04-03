@@ -43,6 +43,7 @@ function showEventsOnMap() {
         // Get a reference to the userinfo collection
         var userinfoRef = db.collection("userinfo");
         var livestockCapacity = db.collection("livestock_Emergency_Capacity");
+        var transPort = db.collection("transport_Personal")
 
         // Get a reference to the livestock_Emergency_Capacity collection
         // var livestockRef = db.collection("livestock_Emergency_Capacity");
@@ -75,103 +76,113 @@ function showEventsOnMap() {
         livestockCapacity.get().then((capacities) => {
 
 
+          transPort.get().then((transportation) => {
 
 
-          // READING information from "userinfo" collection in Firestore
-          userinfoRef.get().then((allEvents) => {
-            allEvents.forEach((doc) => {
+            // READING information from "userinfo" collection in Firestore
+            userinfoRef.get().then((allEvents) => {
+              allEvents.forEach((doc) => {
 
-              // get user address Coordinates
-              lat = doc.data().latitude;
-              lng = doc.data().longitude;
-              console.log(lat, lng);
-              coordinates = [lng, lat];
-              console.log(coordinates);
-              //read name and the details of userinfo
-              event_name = doc.data().Name; // Event Name
-              mobile = doc.data().mobile; // User mobile number
-              email = doc.data().email; // User email
-              phone = doc.data().phone; // User phone number
-              userID = doc.data().userID; // to get userID
+                // get user address Coordinates
+                lat = doc.data().latitude;
+                lng = doc.data().longitude;
+                console.log(lat, lng);
+                coordinates = [lng, lat];
+                console.log(coordinates);
+                //read name and the details of userinfo
+                event_name = doc.data().Name; // Event Name
+                mobile = doc.data().mobile; // User mobile number
+                email = doc.data().email; // User email
+                phone = doc.data().phone; // User phone number
+                userID = doc.data().userID; // to get userID
 
 
-              var capacityByIds = capacities.docs.filter(element => element.data().userID === doc.data().userID);
+                var capacityByIds = capacities.docs.filter(element => element.data().userID === doc.data().userID);
 
-              let emergencyCapacitiesHtml = '';
-              capacityByIds.forEach(capacity => {
-                emergencyCapacitiesHtml += ` <p>Type: ${capacity.data().type}</p><p>Quantities: ${capacity.data().quantity}</p>`
-              });
+                let emergencyCapacitiesHtml = '';
+                capacityByIds.forEach(capacity => {
+                  emergencyCapacitiesHtml += ` <p>Livestock Type: ${capacity.data().type}</p><p>Quantities: ${capacity.data().quantity}</p>`
+                });
 
-              // Pushes information into the features array
-              features.push({
-                type: "Feature",
-                properties: {
-                  description: `<strong>${"User Info: " + event_name}</strong>
+                var transportByIds = transportation.docs.filter(element => element.data().userID === doc.data().userID);
+
+                let transportsHtml = '';
+                transportByIds.forEach(capacity => {
+                  transportsHtml += ` <p>Trnsportation Type: ${capacity.data().type}</p><p>Quantities: ${capacity.data().quantity}</p>`
+                });
+
+                // Pushes information into the features array
+                features.push({
+                  type: "Feature",
+                  properties: {
+                    description: `<strong>${"User Info: " + event_name}</strong>
                                          <p>${"Mobile: " + mobile}</p>
                                          <p>${"Phone: " + phone}</p> 
                                          <p>${"Email: " + email}</p> 
                                          ${emergencyCapacitiesHtml}
+                                         ${transportsHtml}
                                           
                                          <a href="otherUserDetails.html?id=${userID}" target="_blank" title="Opens the users profile in a new window">Read more</a>`,
-                },
-                geometry: {
-                  type: "Point",
-                  coordinates: coordinates,
+                  },
+                  geometry: {
+                    type: "Point",
+                    coordinates: coordinates,
+                  },
+                });
+                //     })
+                // })
+              });
+
+              // Adds features as a source to the map
+              map.addSource("places", {
+                type: "geojson",
+                data: {
+                  type: "FeatureCollection",
+                  features: features,
                 },
               });
-              //     })
-              // })
+
+              // Creates a layer above the map displaying the pins
+              map.addLayer({
+                id: "places",
+                type: "symbol",
+                source: "places",
+                layout: {
+                  "icon-image": "eventpin", // Pin Icon
+                  "icon-size": 0.2, // Pin Size
+                  "icon-allow-overlap": true, // Allows icons to overlap
+                },
+              });
+
+              // Map On Click function that creates a popup, displaying previously defined information from "events" collection in Firestore
+              map.on("click", "places", (e) => {
+                // Copy coordinates array.
+                const coordinates = e.features[0].geometry.coordinates.slice();
+                const description = e.features[0].properties.description;
+
+                // Ensure that if the map is zoomed out such that multiple copies of the feature are visible, the popup appears over the copy being pointed to.
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                  coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
+
+                new mapboxgl.Popup()
+                  .setLngLat(coordinates)
+                  .setHTML(description)
+                  .addTo(map);
+              });
+
+              // Change the cursor to a pointer when the mouse is over the places layer.
+              map.on("mouseenter", "places", () => {
+                map.getCanvas().style.cursor = "pointer";
+              });
+
+              // Defaults cursor when not hovering over the places layer
+              map.on("mouseleave", "places", () => {
+                map.getCanvas().style.cursor = "";
+              });
             });
-
-            // Adds features as a source to the map
-            map.addSource("places", {
-              type: "geojson",
-              data: {
-                type: "FeatureCollection",
-                features: features,
-              },
-            });
-
-            // Creates a layer above the map displaying the pins
-            map.addLayer({
-              id: "places",
-              type: "symbol",
-              source: "places",
-              layout: {
-                "icon-image": "eventpin", // Pin Icon
-                "icon-size": 0.2, // Pin Size
-                "icon-allow-overlap": true, // Allows icons to overlap
-              },
-            });
-
-            // Map On Click function that creates a popup, displaying previously defined information from "events" collection in Firestore
-            map.on("click", "places", (e) => {
-              // Copy coordinates array.
-              const coordinates = e.features[0].geometry.coordinates.slice();
-              const description = e.features[0].properties.description;
-
-              // Ensure that if the map is zoomed out such that multiple copies of the feature are visible, the popup appears over the copy being pointed to.
-              while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-              }
-
-              new mapboxgl.Popup()
-                .setLngLat(coordinates)
-                .setHTML(description)
-                .addTo(map);
-            });
-
-            // Change the cursor to a pointer when the mouse is over the places layer.
-            map.on("mouseenter", "places", () => {
-              map.getCanvas().style.cursor = "pointer";
-            });
-
-            // Defaults cursor when not hovering over the places layer
-            map.on("mouseleave", "places", () => {
-              map.getCanvas().style.cursor = "";
-            });
-          });
-        })
+          })//transport end
+        })//capacity end
       }
     );
   });
