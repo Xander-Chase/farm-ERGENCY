@@ -67,6 +67,8 @@ function showEventsOnMap() {
           }
         );
 
+        
+
         // READING information from "userinfo" collection in Firestore
         userinfoRef.get().then((allEvents) => {
           allEvents.forEach((doc) => {
