@@ -1,43 +1,74 @@
 /* Style for the table */
 table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  /* Style for the table head */
-  thead {
-    background-color: #f2f2f2;
-  }
-  
-  /* Style for the table head cells */
-  th {
-    padding: 8px;
-    text-align: left;
-    font-size: 16px;
-    font-weight: bold;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  /* Style for the table body cells */
-  td {
-    padding: 8px;
-    font-size: 14px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  /* Style for the table rows */
-  tr:hover {
-    background-color: #f5f5f5;
-  }
-  
-  .notibox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
+  width: 100%;
+  border-collapse: collapse;
+}
 
-  
-  #title {
-    text-align: center;
+/* Style for the table head */
+thead {
+  background-color: #f2f2f2;
+}
+
+/* Style for the table head cells */
+th {
+  padding: 8px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Style for the table body cells */
+td {
+  padding: 8px;
+  font-size: 14px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Style for the table rows */
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+.notibox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#title {
+  text-align: center;
+}
+
+/* Media queries for responsive design */
+
+/* For screens smaller than 600px */
+@media (max-width: 600px) {
+  table {
+    font-size: 12px;
   }
+  th, td {
+    padding: 6px;
+  }
+}
+
+/* For screens between 600px and 900px */
+@media (min-width: 600px) and (max-width: 900px) {
+  table {
+    font-size: 14px;
+  }
+  th, td {
+    padding: 8px;
+  }
+}
+
+/* For screens larger than 900px */
+@media (min-width: 900px) {
+  table {
+    font-size: 16px;
+  }
+  th, td {
+    padding: 10px;
+  }
+}
