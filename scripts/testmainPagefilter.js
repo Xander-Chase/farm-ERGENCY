@@ -101,7 +101,7 @@ function showEventsOnMap() {
 
                 let emergencyCapacitiesHtml = '';
                 capacityByIds.forEach(capacity => {
-                  emergencyCapacitiesHtml += ` <p>Relocation capacity for: ${capacity.data().type}</p><p>Quantities: ${capacity.data().quantity}</p>`
+                  emergencyCapacitiesHtml += ` <p>Livestock Type: ${capacity.data().type}</p><p>Quantities: ${capacity.data().quantity}</p>`
                 });
 
                 var transportByIds = transportation.docs.filter(element => element.data().userID === doc.data().userID);
@@ -180,7 +180,20 @@ function showEventsOnMap() {
               map.on("mouseleave", "places", () => {
                 map.getCanvas().style.cursor = "";
               });
-            });
+
+              function updateMarkers() {
+                var filterValues = [];
+                $('input[type=checkbox]:checked').each(function() {
+                  filterValues.push($(this).val());
+                });
+              
+                var filterCondition = ['in', 'property1', filterValues];
+              
+                map.setFilter('markers', filterCondition);
+              }
+              
+
+            });//popup data
           })//transport end
         })//capacity end
       }

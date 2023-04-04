@@ -1,15 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <!-- <footer class="footer mt-auto py-3 text-center">
-    <div class="footer-buttons">
-      <div id="list">
-        <a href="../filter.html">
-        <button onclick="myFunction()" class="position-absolute top-0 end-0" style="background-color: transparent; border:none;">
-
-          <img src="../images/Icons/Filter list.png" width="120" height="120 alt="filter logo">
-        </button>
-        </a>
-      </div> -->
+  <head>
+    <title>Checkboxes Example</title>
+  </head>
 
       <link href="../styles/filterModal.css" rel="stylesheet">
 
@@ -29,11 +22,18 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1">Example select</label>
             <select class="form-control" id="exampleFormControlSelect1">
-              <option>Option 1</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-              <option>Option 5</option>
+              <label>
+                <input type="checkbox" value="value1" onclick="updateMarkers()">
+                value111
+              </label>
+              <label>
+                <input type="checkbox" value="value2" onclick="updateMarkers()">
+                value2
+              </label>
+              <label>
+                <input type="checkbox" value="value3" onclick="updateMarkers()">
+                value3
+              </label>   
             </select>
           </div>
           <div class="form-group">
