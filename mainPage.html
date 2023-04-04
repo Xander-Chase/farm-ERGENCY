@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>FARMergency Main Page</title>
+  <title>Relocation</title>
   <meta name="Main page" content="FARMergency Main Screen">
 
   <!-- Required meta tags -->
@@ -15,7 +15,7 @@
   <!-- Boostrap Library JS CDN  go here -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-  </script>
+    </script>
 
   <!-- JQuery Library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -44,13 +44,11 @@
   <link rel="stylesheet"
     href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.1/mapbox-gl-geocoder.css"
     type="text/css" />
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js"></script>
 
 
   <style>
-    #mapTest {
-      padding-top: 120px;
-      width: 100%;
-    }
 
     .featureNavbar {
       display: flex;
@@ -64,12 +62,14 @@
 </head>
 
 <body>
+  <div id="mapSearch">
+  <script
+    src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+  <link rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+  </div>
   <nav>
     <span id="mainPageNavBar" class="navbar-brand fw-bolder text-dark">
-      <form class="form-inline my-2 my-lg-0 featureNavbar">
-        <input id="searchBar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button id="searchButton" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
       <input id="signOut" type="image" src="./images/Icons/Logout.png">
     </span>
     <!-- <button onclick="goBack()" class="position-absolute top-0 start-0">
@@ -87,7 +87,7 @@
     <div id='map'></div>
     <!-- MAPBOX -->
 
-</main>
+  </main>
 
 
   <footer id="footerlogin"></footer>
@@ -103,6 +103,14 @@
   <script src="./scripts/skeleton2.js"></script>
   <script src="./scripts/mainPage.js"></script>
   <script src="./scripts/signout.js"></script>
+
+  <script>
+    var pageName = document.title;
+  
+    var featureNavbar = document.getElementById("mainPageNavBar");
+  
+    featureNavbar.innerHTML = pageName;
+  </script>
 
   <script>
     function goBack() {
