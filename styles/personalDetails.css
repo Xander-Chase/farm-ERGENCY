@@ -1,3 +1,5 @@
+/* Default styles */
+
 #indexNavbar {
   padding: 40px;
   width: 100%;
@@ -6,7 +8,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 #featureNavbar {
@@ -20,7 +21,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 /* .button{
@@ -43,4 +43,51 @@ footer {
   font-weight: bold;
   align-items: center;
   display: flex;
+}
+
+/* Media queries */
+
+/* For screens up to 767px */
+@media screen and (max-width: 767px) {
+  #indexNavbar {
+    font-size: large;
+  }
+
+  #featureNavbar {
+    font-size: large;
+  }
+
+  footer {
+    height: 80px;
+  }
+}
+
+/* For screens between 768px and 1199px */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  #indexNavbar {
+    font-size: xx-large;
+  }
+
+  #featureNavbar {
+    font-size: xx-large;
+  }
+
+  footer {
+    height: 100px;
+  }
+}
+
+/* For screens 1200px and up */
+@media screen and (min-width: 1200px) {
+  #indexNavbar {
+    font-size: xxx-large;
+  }
+
+  #featureNavbar {
+    font-size: xxx-large;
+  }
+
+  footer {
+    height: 140px;
+  }
 }

@@ -1,16 +1,51 @@
-
 /* Set height for header */
 nav {
-    height: 100px; 
-}
-
-/* Set height for footer */
-.footer {
-    height: 100px; 
-}
-
-/* Set height for main to fill the remaining space */
-main {
+    height: 100px;
+  }
+  
+  /* Set height for footer */
+  .footer {
+    height: 100px;
+  }
+  
+  /* Set height for main to fill the remaining space */
+  main {
     height: calc(100vh - (70px + 50px)); /* Subtract header and footer height from viewport height */
     overflow-y: auto; /* Enable vertical scrolling if needed */
-}
+  }
+  
+  /* Media Queries */
+  @media only screen and (max-width: 768px) {
+    /* Set height for header for smaller screens */
+    nav {
+      height: 80px;
+    }
+  
+    /* Set height for footer for smaller screens */
+    .footer {
+      height: 80px;
+    }
+  
+    /* Set height for main to fill the remaining space for smaller screens */
+    main {
+      height: calc(100vh - (60px + 40px)); /* Subtract header and footer height from viewport height */
+    }
+  }
+  
+  @media only screen and (min-width: 1200px) {
+    /* Set height for header for larger screens */
+    nav {
+      height: 120px;
+    }
+  
+    /* Set height for footer for larger screens */
+    .footer {
+      height: 120px;
+    }
+  
+    /* Set height for main to fill the remaining space for larger screens */
+    main {
+      height: calc(100vh - (90px + 70px)); /* Subtract header and footer height from viewport height */
+    }
+  }
+  
