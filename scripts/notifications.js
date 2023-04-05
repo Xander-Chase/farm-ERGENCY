@@ -9,7 +9,7 @@ db.collection("alertForm")
       const timestamp = data.timestamp.toDate().toLocaleString();
       const row = `
         <tr>
-          <td>${data.Name}</td>
+        <td><a href="otherUserDetails.html?id=${doc.data().userID}">${data.Name}</a></td>
           <td>${data.evacuation}</td>
           <td>${data.transport}</td>
           <td>${data.property}</td>
