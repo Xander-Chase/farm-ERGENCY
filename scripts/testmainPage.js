@@ -53,17 +53,15 @@ function showEventsOnMap() {
               position.coords.latitude,
             ];
 
-            // Add a marker for the user's location
-            const userMarker = new mapboxgl.Marker()
-              .setLngLat(userCoordinates)
-              .addTo(map);
-
             // Change the center of the map to the user's location
             map.setCenter(userCoordinates);
+            map.setZoom(13);
           },
           function () {
             // Handle location permission denied or unavailable
             console.log("Could not get user location");
+          }, {
+            enableHighAccuracy: true
           }
         );
 

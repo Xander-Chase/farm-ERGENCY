@@ -1,114 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title></title>
+    <meta name="Feature Menu" content="FARMergency Feature Listing" />
 
-<head>
-  <title></title>
-  <meta name="Feature Menu" content="FARMergency Feature Listing" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Required meta tags -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap Library CSS CDN go here -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <!-- Boostrap Library JS CDN  go here -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
 
-  <!-- Bootstrap Library CSS CDN go here -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
-  <!-- Boostrap Library JS CDN  go here -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-  </script>
+    <!-- Other libraries go here -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css"
+    />
+    <script src="scripts/firebaseAPI_BBY30.js"></script>
 
-  <!-- Other libraries go here -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
-  <script src="scripts/firebaseAPI_BBY30.js"></script>
+    <!-- Link to styles of your own -->
+    <link rel="stylesheet" href="navBarFooter.css" />
+    <style>
+      body {
+        background-image: url();
+        background-repeat: repeat;
+        background-size: 50%;
+      }
 
-  <!-- Link to styles of your own -->
-  <link rel="stylesheet" href="navBarFooter.css" />
-  <style>
-    body {
-      background-image: url();
-      background-repeat: repeat;
-      background-size: 50%;
-    }
+      #container {
+        transform: translateY(-25%);
+      }
+    </style>
+  </head>
 
-    #container {
-      transform: translateY(-25%);
-    }
-  </style>
-</head>
+  <body>
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
 
-<body>
-  <!------------------------------>
-  <!-- Your HTML Layout go here -->
-  <!------------------------------>
+    <nav id="navbar" class="mt-auto text-center">
+      <span id="featureNavbar" class="navbar-brand fw-bolder text-dark"
+        >Alert</span
+      >
+    </nav>
 
+    <input
+      id="signOut"
+      type="image"
+      class="position-absolute top-0 end-0"
+      src="./images/Icons/Logout.png"
+    />
 
-  <nav id="navbar" class="mt-auto text-center">
-    <span id="featureNavbar" class="navbar-brand fw-bolder text-dark">Alert</span>
-    <input id="signOut" type="image" class="position-absolute top-0 end-0" src="./images/Icons/Logout.png">
-  </nav>
-  
-  <div id="container">
-    <div class="d-flex justify-content-center align-items-center flex-column" style="height: 100vh;">
-      <div class="col-lg-5" id="alert">
-        <h1 class="text-center mb-5 "></h1>
-        <form>
-          <div class="form-group">
-            <label for="exampleFormControlSelect1">Do you require immediate livestock evacuation?</label>
-            <select class="form-control" id="immediateEvacuation">
-              <option>Yes</option>
-              <option>No</option>
-            </select>
-          </div>
-          <br />
-          <div>
-            <label for="exampleFormControlSelect1">Do you require transportation assistance?</label>
-            <select class="form-control" id="immediateTransport">
-              <option>Yes</option>
-              <option>No</option>
-            </select>
-          </div>
-          <br />
-          <div class="form-group">
-            <label>What kind of livestock needs assistance?</label>
-            <input type="text" id="assistance" class="form-control" placeholder="Enter livestock type and quantity" />
-          </div>
-          <div class="d-flex justify-content-end mt-5">
-            <button type="button" onclick="saveAlert()" class="btn btn-info">
-              Submit
-            </button>
-          </div>
-        </form>
+    <div id="container">
+      <div
+        class="d-flex justify-content-center align-items-center flex-column"
+        style="height: 100vh"
+      >
+        <div class="col-lg-5" id="alert">
+          <h1 class="text-center mb-5"></h1>
+          <form>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1"
+                >Do you require immediate livestock evacuation?</label
+              >
+              <select class="form-control" id="immediateEvacuation">
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <br />
+            <div>
+              <label for="exampleFormControlSelect1"
+                >Do you require transportation assistance?</label
+              >
+              <select class="form-control" id="immediateTransport">
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <br />
+            <div class="form-group">
+              <label>What kind of livestock needs assistance?</label>
+              <input
+                type="text"
+                id="assistance"
+                class="form-control"
+                placeholder="Enter livestock type and quantity"
+              />
+            </div>
+            <div class="d-flex justify-content-end mt-5">
+              <button type="button" onclick="saveAlert()" class="btn btn-info">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-  
 
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
 
+    <!-- Link to scripts of your own -->
+    <!-- <script src="./scripts/script.js"></script> -->
+    <script src="./scripts/skeleton_navbar.js"></script>
+    <script src="./scripts/firebaseAPI_BBY30.js"></script>
+    <script src="./scripts/personal_Details.js"></script>
+    <script src="./scripts/signout.js"></script>
+  </body>
 
-  <!---------------------------------------------->
-  <!-- Your own JavaScript functions go here    -->
-  <!---------------------------------------------->
-
-  <!-- Link to scripts of your own -->
-  <!-- <script src="./scripts/script.js"></script> -->
-  <script src="./scripts/firebaseAPI_BBY30.js"></script>
-  <script src="./scripts/signout.js"></script>
-  <script src="./scripts/skeleton_navbar.js"></script>
-  <script src="./scripts/alert.js"></script>
-  
-
-</body>
-
-<footer class="footer mt-auto py-3 text-xcenter">
-  <div class="container">
-    <span class="text-black fw-bold h1 justify-content-center align-items-center center">FARMergency Alert</span>
-  </div>
-</footer>
-
+  <footer class="footer mt-auto py-3 text-center">
+    <div class="container">
+      <span
+        class="text-black fw-bold h1 justify-content-center align-items-center center"
+        >FARMergency Alert</span
+      >
+    </div>
+  </footer>
 </html>
