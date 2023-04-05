@@ -84,9 +84,7 @@ function showEventsOnMap() {
                 // get user address Coordinates
                 lat = doc.data().latitude;
                 lng = doc.data().longitude;
-                console.log(lat, lng);
                 coordinates = [lng, lat];
-                console.log(coordinates);
                 //read name and the details of userinfo
                 event_name = doc.data().Name; // Event Name
                 mobile = doc.data().mobile; // User mobile number
