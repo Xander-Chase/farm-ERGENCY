@@ -97,7 +97,7 @@ function showEventsOnMap() {
 
                 let emergencyCapacitiesHtml = '';
                 capacityByIds.forEach(capacity => {
-                  emergencyCapacitiesHtml += ` <p>Relocation capacity for: ${capacity.data().type}</p><p>Quantities: ${capacity.data().quantity}</p>`
+                  emergencyCapacitiesHtml += ` <p>Relocation capacity for: ${capacity.data().type}</p><p>Capacities: ${capacity.data().quantity}</p>`
                 });
 
                 var transportByIds = transportation.docs.filter(element => element.data().userID === doc.data().userID);
