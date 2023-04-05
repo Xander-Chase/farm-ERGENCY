@@ -10,6 +10,23 @@
   justify-content: center;
 }
 
+.feature_container {
+  display: grid;
+  height: auto;
+  font-family: 'MainFont';
+  justify-items: center;
+  padding-top: 100px;
+  padding-left: .5%;
+  padding-right: .5%;
+  padding-bottom: 100px;
+  gap: 45px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+      "feature_Logo1 feature_Logo2"
+      "feature_Logo3 feature_Logo5"
+      "feature_Logo6"
+}
+
 #featureNavbar {
   padding: 40px;
   position: auto;
@@ -52,6 +69,23 @@ footer {
   #indexNavbar {
     font-size: large;
   }
+
+  .feature_container {
+    display: grid;
+    height: auto;
+    font-family: 'MainFont';
+    justify-items: center;
+    padding-top: 100px;
+    padding-left: .5%;
+    padding-right: .5%;
+    padding-bottom: 75px;
+    gap: 45px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "feature_Logo1 feature_Logo2"
+        "feature_Logo3 feature_Logo5"
+        "feature_Logo6"
+}
 
   #featureNavbar {
     font-size: large;
