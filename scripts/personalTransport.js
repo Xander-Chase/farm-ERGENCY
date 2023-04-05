@@ -39,7 +39,7 @@ function addtransport() {
     // Write the data to Firestore
     var db = firebase.firestore();
     var transportCollection = db.collection("transport_Personal");
-    transportCollection.where("type", "==", transportType).get()
+    transportCollection.where("userID", "==", userID).where("type", "==", transportType).get()
         .then(function (querySnapshot) {
             if (querySnapshot.empty) {
                 transportCollection.add({
@@ -53,11 +53,13 @@ function addtransport() {
                     .catch(function (error) {
                         console.error("Error adding document: ", error);
                     });
-            }
-        })
-        .catch(function (error) {
-            console.error("Error getting documents: ", error);
-        });
+                } else {
+                    console.log("Document with the same userID and livestock type already exists.");
+                }
+            })
+            .catch(function (error) {
+                console.error("Error getting documents: ", error);
+            });
 }
 //calls function to run it
 addtransport();

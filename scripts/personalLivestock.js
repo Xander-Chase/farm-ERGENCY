@@ -35,12 +35,11 @@ function addLivestock() {
     // Get the current user's ID
     var user = firebase.auth().currentUser;
     var userID = user.uid;
-    console.log("PersonalLivestock" + userID);
 
     // Write the data to Firestore
     var db = firebase.firestore();
     var livestockCollection = db.collection("livestock_Personal");
-    livestockCollection.where("type", "==", livestockType).get()
+    livestockCollection.where("userID", "==", userID).where("type", "==", livestockType).get()
         .then(function (querySnapshot) {
             if (querySnapshot.empty) {
                 livestockCollection.add({
@@ -55,11 +54,14 @@ function addLivestock() {
                     .catch(function (error) {
                         console.error("Error adding document: ", error);
                     });
+            } else {
+                console.log("Document with the same userID and livestock type already exists.");
             }
         })
         .catch(function (error) {
             console.error("Error getting documents: ", error);
         });
+
 }
 //calls function to run it
 addLivestock();
